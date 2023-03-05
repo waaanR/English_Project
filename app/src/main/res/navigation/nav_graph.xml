@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_graph.xml"
+    app:startDestination="@id/menuFragment">
+
+    <fragment
+        android:id="@+id/menuFragment"
+        android:name="com.example.english_project.MenuFragment"
+        android:label="MenuFragment" >
+        <action
+            android:id="@+id/action_menuFragment_to_settingsFragment"
+            app:destination="@id/settingsFragment" />
+        <action
+            android:id="@+id/action_menuFragment_to_databaseFragment"
+            app:destination="@id/databaseFragment" />
+        <action
+            android:id="@+id/action_menuFragment_to_addingPageFragment"
+            app:destination="@id/addingPageFragment" />
+        <action
+            android:id="@+id/action_menuFragment_to_flashCardFragment"
+            app:destination="@id/flashCardFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="com.example.english_project.SettingsFragment"
+        android:label="SettingsFragment" >
+        <action
+            android:id="@+id/action_settingsFragment_to_menuFragment"
+            app:destination="@id/menuFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/addingPageFragment"
+        android:name="com.example.english_project.AddingPageFragment"
+        android:label="AddingPageFragment" >
+        <action
+            android:id="@+id/action_addingPageFragment_to_menuFragment"
+            app:destination="@id/menuFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/databaseFragment"
+        android:name="com.example.english_project.DatabaseFragment"
+        android:label="DatabaseFragment" >
+        <action
+            android:id="@+id/action_databaseFragment_to_modifStatsFragment"
+            app:destination="@id/modifStatsFragment" />
+        <action
+            android:id="@+id/action_databaseFragment_to_menuFragment"
+            app:destination="@id/menuFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/flashCardFragment"
+        android:name="com.example.english_project.FlashCardFragment"
+        android:label="FlashCardFragment" >
+        <action
+            android:id="@+id/action_flashCardFragment_to_menuFragment"
+            app:destination="@id/menuFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/modifStatsFragment"
+        android:name="com.example.english_project.ModifStatsFragment"
+        android:label="ModifStatsFragment" >
+        <action
+            android:id="@+id/action_modifStatsFragment_to_databaseFragment"
+            app:destination="@id/databaseFragment" />
+    </fragment>
+</navigation>
