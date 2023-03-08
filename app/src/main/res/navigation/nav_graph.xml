@@ -52,6 +52,7 @@
         <action
             android:id="@+id/action_databaseFragment_to_menuFragment"
             app:destination="@id/menuFragment" />
+
     </fragment>
     <fragment
         android:id="@+id/flashCardFragment"
@@ -70,5 +71,8 @@
         <action
             android:id="@+id/action_modifStatsFragment_to_databaseFragment"
             app:destination="@id/databaseFragment" />
+        <argument
+            android:name="id_word_trad"
+            app:argType="integer" />
     </fragment>
 </navigation>
