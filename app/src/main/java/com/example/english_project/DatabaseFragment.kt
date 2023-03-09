@@ -41,18 +41,18 @@ class DatabaseFragment : Fragment() {
         }
         myRecycler.adapter = wordAdapter
 
-        /*// SearchView
-        binding.editTextSearch.setOnQueryTextListener(object : SearchView.OnQueryTextListener{
+        // SearchView
+        binding.editTextSearch.setOnQueryTextListener(object : SearchView.OnQueryTextListener,
+            android.widget.SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
-                TODO("Not yet implemented")
+                return true
             }
 
             override fun onQueryTextChange(newText: String?): Boolean {
-                val searchText = newText!!
-
+                return true
             }
 
-        })*/
+        })
 
 
         return binding.root
