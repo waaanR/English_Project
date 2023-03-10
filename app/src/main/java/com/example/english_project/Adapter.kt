@@ -3,18 +3,20 @@ package com.example.english_project
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Filter
 import android.widget.Filterable
 import androidx.recyclerview.widget.RecyclerView
 import com.example.english_project.dataModel.wordTrad
 import com.example.english_project.databinding.ItemTraductionBinding
+import java.util.*
 
 class Adapter(
     private val datalist: Array<wordTrad>,
     private val onItemClick: ((Int) -> Unit)
-) : RecyclerView.Adapter<Adapter.Holder>()/*, Filterable*/ {
+) : RecyclerView.Adapter<Adapter.Holder>(), Filterable {
 
     // pour la searchview, on est obligé d'init un sous tableau
-    lateinit var dataFilterList: Array<wordTrad>
+    var dataFilterList: Array<wordTrad>
 
     init {
         dataFilterList = datalist
@@ -43,23 +45,41 @@ class Adapter(
         holder.itemView.setOnClickListener { onItemClick(word.id) }
     }
 
-    override fun getItemCount(): Int = dataFilterList.size
+    override fun getItemCount(): Int = datalist.size
 
 
     // fonction de filtre pour la searchview
-    /*override fun getFilter(): android.widget.Filter {
-        val filter = object : android.widget.Filter() {
+    override fun getFilter(): Filter {
+        return object : Filter() {
             override fun performFiltering(p0: CharSequence?): FilterResults {
-                var filterResults = FilterResults()
-                if (p0 == null || p0.isEmpty()) {
-
+                val charSearch = p0.toString()
+                if (charSearch.isEmpty()) {
+                    dataFilterList = datalist
+                } else {
+                    val resultList = mutableListOf<wordTrad>()
+                    for (word in dataFilterList) {
+                        if (word.french.lowercase(Locale.ROOT)
+                                .contains(charSearch.lowercase(Locale.ROOT))
+                            || word.english.lowercase(Locale.ROOT)
+                                .contains(charSearch.lowercase(Locale.ROOT))
+                        ) {
+                            resultList.add(word)
+                        }
+                    }
+                    dataFilterList = resultList as Array<wordTrad>
                 }
+                val filterResults = Filter.FilterResults()
+                filterResults.values = dataFilterList
+                return filterResults
             }
 
             override fun publishResults(p0: CharSequence?, p1: FilterResults?) {
-                TODO("Not yet implemented")
+                dataFilterList = p1?.values as Array<wordTrad>
+                notifyDataSetChanged()
             }
-
         }
-    }*/
+
+    }
 }
+
+

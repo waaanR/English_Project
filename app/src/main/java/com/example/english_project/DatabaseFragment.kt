@@ -45,26 +45,26 @@ class DatabaseFragment : Fragment() {
         binding.editTextSearch.setOnQueryTextListener(object : SearchView.OnQueryTextListener,
             android.widget.SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
-                return true
+                return false
             }
 
             override fun onQueryTextChange(newText: String?): Boolean {
-                return true
+                wordAdapter.filter.filter(newText)
+                return false
             }
 
         })
-
 
         return binding.root
     }
 
     fun initArray() : Array<wordTrad> {
         var mot1 : wordTrad = wordTrad(0,"Bonjour","Hello")
-        var mot2 : wordTrad = wordTrad(1,"Bonjour","Hello")
-        var mot3 : wordTrad = wordTrad(2,"Bonjour","Hello")
-        var mot4 : wordTrad = wordTrad(3,"Bonjour","Hello")
-        var mot5 : wordTrad = wordTrad(4,"Bonjour","Hello")
-        var mot6 : wordTrad = wordTrad(5,"Bonjour","Hello")
+        var mot2 : wordTrad = wordTrad(1,"Salut","Hi")
+        var mot3 : wordTrad = wordTrad(2,"Manger","Eat")
+        var mot4 : wordTrad = wordTrad(3,"Boire","Drink")
+        var mot5 : wordTrad = wordTrad(4,"Dormir","Sleep")
+        var mot6 : wordTrad = wordTrad(5,"S'asseoir","To sit down")
         val tableauMots = arrayOf(mot1,mot2,mot3,mot4,mot5,mot6)
         return tableauMots
     }
