@@ -11,12 +11,12 @@ import com.example.english_project.databinding.ItemTraductionBinding
 import java.util.*
 
 class Adapter(
-    private val datalist: Array<wordTrad>,
+    private var datalist: List<wordTrad>,
     private val onItemClick: ((Int) -> Unit)
 ) : RecyclerView.Adapter<Adapter.Holder>(), Filterable {
 
     // pour la searchview, on est obligé d'init un sous tableau
-    var dataFilterList: Array<wordTrad>
+    var dataFilterList: List<wordTrad>
 
     init {
         dataFilterList = datalist
@@ -51,8 +51,8 @@ class Adapter(
     // fonction de filtre pour la searchview
     override fun getFilter(): Filter {
         return object : Filter() {
-            override fun performFiltering(p0: CharSequence?): FilterResults {
-                val charSearch = p0.toString()
+            override fun performFiltering(constraint: CharSequence?): FilterResults {
+                val charSearch = constraint.toString()
                 if (charSearch.isEmpty()) {
                     dataFilterList = datalist
                 } else {
@@ -66,7 +66,7 @@ class Adapter(
                             resultList.add(word)
                         }
                     }
-                    dataFilterList = resultList as Array<wordTrad>
+                    dataFilterList = resultList
                 }
                 val filterResults = Filter.FilterResults()
                 filterResults.values = dataFilterList
@@ -74,7 +74,7 @@ class Adapter(
             }
 
             override fun publishResults(p0: CharSequence?, p1: FilterResults?) {
-                dataFilterList = p1?.values as Array<wordTrad>
+                dataFilterList = p1?.values as List<wordTrad>
                 notifyDataSetChanged()
             }
         }
