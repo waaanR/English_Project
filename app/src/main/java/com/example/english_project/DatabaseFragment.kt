@@ -64,7 +64,7 @@ class DatabaseFragment : Fragment() {
         var mot3 : wordTrad = wordTrad(2,"Manger","Eat")
         var mot4 : wordTrad = wordTrad(3,"Boire","Drink")
         var mot5 : wordTrad = wordTrad(4,"Dormir","Sleep")
-        var mot6 : wordTrad = wordTrad(5,"S'asseoir","To sit down")
+        var mot6 : wordTrad = wordTrad(5,"S'asseoir sur une chaise wesh, mais toujours plus longue cette phrase ","To sit down on a chair wesh")
         val tableauMots = arrayOf(mot1,mot2,mot3,mot4,mot5,mot6)
         return tableauMots
     }
