@@ -7,14 +7,14 @@ class WordsManager (val cxt: Context) {
 
     private var words: WordsDB? = null
     private var bdd: SQLiteDatabase? = null
-    val allwords: ArrayList<WordsClass>
+    /*val allwords: ArrayList<WordsClass>
         get() {
 
 
 
 
 
-        }
+        }*/
 
     init {
         words = WordsDB(cxt, NOM_BDD, null, 1)
@@ -32,12 +32,12 @@ class WordsManager (val cxt: Context) {
         words!!.close()
     }
 
-    fun insertWords(words: WordsClass): Long {
+/*    fun insertWords(words: WordsClass): Long {
 
 
 
 
-    }
+    }*/
 
     companion object{
         var NOM_BDD = "words"

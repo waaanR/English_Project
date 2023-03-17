@@ -13,7 +13,7 @@ import java.util.*
 class Adapter(
     private var datalist: List<wordTrad>,
     private val onItemClick: ((Int) -> Unit)
-) : RecyclerView.Adapter<Adapter.Holder>(), Filterable {
+) : RecyclerView.Adapter<Adapter.Holder>()/*, Filterable*/ {
 
     // pour la searchview, on est obligé d'init un sous tableau
     var dataFilterList: List<wordTrad>
@@ -49,7 +49,7 @@ class Adapter(
 
 
     // fonction de filtre pour la searchview
-    override fun getFilter(): Filter {
+    /*override fun getFilter(): Filter {
         return object : Filter() {
             override fun performFiltering(constraint: CharSequence?): FilterResults {
                 val charSearch = constraint.toString()
@@ -79,7 +79,7 @@ class Adapter(
             }
         }
 
-    }
+    }*/
 }
 
 
