@@ -1,11 +1,11 @@
 package com.example.english_project
 
 import android.os.Bundle
-import android.view.ContextMenu
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.SearchView
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
@@ -45,7 +45,19 @@ class DatabaseFragment : Fragment() {
         myRecycler.adapter = wordAdapter
 
         // SearchView
-        binding.editTextSearch.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+        binding.editTextSearch.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+            }
+
+            override fun afterTextChanged(s: Editable?) {
+                ListFilter(s.toString())
+            }
+
+        })
+        /*binding.editTextSearch.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
                 return false
             }
@@ -53,28 +65,23 @@ class DatabaseFragment : Fragment() {
                 wordAdapter.dataFilterList = ListFilter(newText)
                 return false
             }
-        })
+        })*/
 
         return binding.root
     }
 
+    // fonction de filtre
+    fun ListFilter(newText: String) {
+        val wordArrayFiltered = mutableListOf<wordTrad>()
+        for (word in wordArray) {
+            if (word.french.lowercase(Locale.ROOT)
+                    .contains(newText.lowercase(Locale.ROOT))
 
-    fun ListFilter(newText: String?): List<wordTrad> {
-        if (newText.isNullOrBlank()) return wordArray
-        else {
-            val wordArrayFiltered = mutableListOf<wordTrad>()
-            for (word in wordArray) {
-                if (word.french.lowercase(Locale.ROOT)
-                        .contains(newText.lowercase(Locale.ROOT))
-                    || word.english.lowercase(Locale.ROOT)
-                        .contains(newText.lowercase(Locale.ROOT))
-                ) {
-                    wordArrayFiltered.add(word)
-                }
+            ) {
+                wordArrayFiltered.add(word)
             }
-            return wordArrayFiltered
         }
-
+        wordAdapter.filterList(wordArrayFiltered)
     }
 
     fun InitArray(): List<wordTrad> {

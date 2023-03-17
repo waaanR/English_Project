@@ -45,7 +45,7 @@ class Adapter(
         holder.itemView.setOnClickListener { onItemClick(word.id) }
     }
 
-    override fun getItemCount(): Int = datalist.size
+    override fun getItemCount(): Int = dataFilterList.size
 
 
     // fonction de filtre pour la searchview
@@ -78,8 +78,13 @@ class Adapter(
                 notifyDataSetChanged()
             }
         }
-
     }*/
+
+    // deuxième fonction de filtre pour test
+    fun filterList(filteredWordList: List<wordTrad>) {
+        this.dataFilterList = filteredWordList
+        notifyDataSetChanged()
+    }
 }
 
 

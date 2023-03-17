@@ -30,7 +30,7 @@ public class FragmentDatabaseBindingImpl extends FragmentDatabaseBinding  {
     }
     private FragmentDatabaseBindingImpl(androidx.databinding.DataBindingComponent bindingComponent, View root, Object[] bindings) {
         super(bindingComponent, root, 0
-            , (android.widget.SearchView) bindings[2]
+            , (android.widget.EditText) bindings[2]
             , (androidx.recyclerview.widget.RecyclerView) bindings[1]
             );
         this.mboundView0 = (androidx.constraintlayout.widget.ConstraintLayout) bindings[0];
