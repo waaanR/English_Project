@@ -1,7 +1,6 @@
 package com.example.english_project
 
 import android.os.Bundle
-import android.view.ContextMenu
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -25,8 +24,7 @@ class DatabaseFragment : Fragment() {
 
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_database, container, false)
@@ -47,10 +45,12 @@ class DatabaseFragment : Fragment() {
         // SearchView
         binding.editTextSearch.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
+                ListFilter(query)
                 return false
             }
+
             override fun onQueryTextChange(newText: String?): Boolean {
-                wordAdapter.dataFilterList = ListFilter(newText)
+                ListFilter(newText)
                 return false
             }
         })
@@ -58,9 +58,9 @@ class DatabaseFragment : Fragment() {
         return binding.root
     }
 
-
-    fun ListFilter(newText: String?): List<wordTrad> {
-        if (newText.isNullOrBlank()) return wordArray
+    // fonction de filtre de la searchview
+    fun ListFilter(newText: String?) {
+        if (newText.isNullOrBlank()) wordAdapter.filterList(wordArray)
         else {
             val wordArrayFiltered = mutableListOf<wordTrad>()
             for (word in wordArray) {
@@ -72,9 +72,8 @@ class DatabaseFragment : Fragment() {
                     wordArrayFiltered.add(word)
                 }
             }
-            return wordArrayFiltered
+            wordAdapter.filterList(wordArrayFiltered)
         }
-
     }
 
     fun InitArray(): List<wordTrad> {

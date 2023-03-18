@@ -13,7 +13,7 @@ import java.util.*
 class Adapter(
     private var datalist: List<wordTrad>,
     private val onItemClick: ((Int) -> Unit)
-) : RecyclerView.Adapter<Adapter.Holder>()/*, Filterable*/ {
+) : RecyclerView.Adapter<Adapter.Holder>() {
 
     // pour la searchview, on est obligé d'init un sous tableau
     var dataFilterList: List<wordTrad>
@@ -45,41 +45,14 @@ class Adapter(
         holder.itemView.setOnClickListener { onItemClick(word.id) }
     }
 
-    override fun getItemCount(): Int = datalist.size
+    override fun getItemCount(): Int = dataFilterList.size
 
 
     // fonction de filtre pour la searchview
-    /*override fun getFilter(): Filter {
-        return object : Filter() {
-            override fun performFiltering(constraint: CharSequence?): FilterResults {
-                val charSearch = constraint.toString()
-                if (charSearch.isEmpty()) {
-                    dataFilterList = datalist
-                } else {
-                    val resultList = mutableListOf<wordTrad>()
-                    for (word in dataFilterList) {
-                        if (word.french.lowercase(Locale.ROOT)
-                                .contains(charSearch.lowercase(Locale.ROOT))
-                            || word.english.lowercase(Locale.ROOT)
-                                .contains(charSearch.lowercase(Locale.ROOT))
-                        ) {
-                            resultList.add(word)
-                        }
-                    }
-                    dataFilterList = resultList
-                }
-                val filterResults = Filter.FilterResults()
-                filterResults.values = dataFilterList
-                return filterResults
-            }
-
-            override fun publishResults(p0: CharSequence?, p1: FilterResults?) {
-                dataFilterList = p1?.values as List<wordTrad>
-                notifyDataSetChanged()
-            }
-        }
-
-    }*/
+    fun filterList(filteredWordList: List<wordTrad>) {
+        this.dataFilterList = filteredWordList
+        notifyDataSetChanged()
+    }
 }
 
 
