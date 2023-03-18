@@ -4,5 +4,5 @@ data class wordTrad(
     var id : Int,
     var french : String,
     var english : String,
-    var mutliplier : Int = 0
+    var multiplier : Int = 1
 )
