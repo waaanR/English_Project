@@ -15,6 +15,9 @@ public class FragmentAddingPageBindingImpl extends FragmentAddingPageBinding  {
         sIncludes = null;
         sViewsWithIds = new android.util.SparseIntArray();
         sViewsWithIds.put(R.id.tvFragmentName, 1);
+        sViewsWithIds.put(R.id.etfrench, 2);
+        sViewsWithIds.put(R.id.etenglish, 3);
+        sViewsWithIds.put(R.id.butaddword, 4);
     }
     // views
     @NonNull
@@ -25,10 +28,13 @@ public class FragmentAddingPageBindingImpl extends FragmentAddingPageBinding  {
     // Inverse Binding Event Handlers
 
     public FragmentAddingPageBindingImpl(@Nullable androidx.databinding.DataBindingComponent bindingComponent, @NonNull View root) {
-        this(bindingComponent, root, mapBindings(bindingComponent, root, 2, sIncludes, sViewsWithIds));
+        this(bindingComponent, root, mapBindings(bindingComponent, root, 5, sIncludes, sViewsWithIds));
     }
     private FragmentAddingPageBindingImpl(androidx.databinding.DataBindingComponent bindingComponent, View root, Object[] bindings) {
         super(bindingComponent, root, 0
+            , (android.widget.Button) bindings[4]
+            , (android.widget.EditText) bindings[3]
+            , (android.widget.EditText) bindings[2]
             , (android.widget.TextView) bindings[1]
             );
         this.mboundView0 = (android.widget.FrameLayout) bindings[0];

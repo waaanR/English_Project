@@ -20,7 +20,6 @@ class WordsDB(context: Context, name: String, factory: SQLiteDatabase.CursorFact
         db!!.execSQL("drop table " + TABLE_WORDS)
         onCreate(db!!)
         Log.d("DATABASE", "Upgrade BDD")
-
     }
 
     companion object{

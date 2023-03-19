@@ -20,6 +20,37 @@
                 android:layout_height="wrap_content"
                 android:text="AddingPageFragment"
                 app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"/>
+
+            <EditText
+                android:id="@+id/etfrench"
+                android:layout_width="300dp"
+                android:layout_height="50dp"
+                android:hint="French word"
+                android:inputType="text"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"/>
+
+            <EditText
+                android:id="@+id/etenglish"
+                android:layout_width="300dp"
+                android:layout_height="50dp"
+                android:layout_margin="40dp"
+                android:hint="English word"
+                android:inputType="text"
+                app:layout_constraintTop_toBottomOf="@id/etfrench"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"/>
+
+            <Button
+                android:id="@+id/butaddword"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Add"
+                app:layout_constraintTop_toBottomOf="@+id/etenglish"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"/>

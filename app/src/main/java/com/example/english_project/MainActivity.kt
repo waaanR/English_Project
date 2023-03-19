@@ -16,15 +16,6 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        databaseManager = WordsManager(this)
-
-        val wordTrad1 = wordTrad(1,"Bonjour", "Hello")
-        databaseManager.insertWords(wordTrad1)
-
-        Log.d("DATABASE", "BDD =" + databaseManager.allwords.toString())
-
-
-        databaseManager.close()
     }
 
 

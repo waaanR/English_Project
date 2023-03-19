@@ -32,7 +32,8 @@ class WordsManager (val cxt: Context) {
                         wordTrad(
                             c.getInt(WordsDB.NUM_COL_ID),
                             c.getString(WordsDB.NUM_COL_FRENCH),
-                            c.getString(WordsDB.NUM_COL_ENGLISH)
+                            c.getString(WordsDB.NUM_COL_ENGLISH),
+                            c.getInt(WordsDB.NUM_COL_MULTIPLIER)
                         )
                     )
                 }
@@ -76,7 +77,6 @@ class WordsManager (val cxt: Context) {
 
         return retval
     }
-
 
     companion object{
         var NOM_BDD = "words"

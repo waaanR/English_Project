@@ -1,6 +1,7 @@
 package com.example.english_project
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,6 +11,7 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.english_project.dataModel.WordsManager
 import com.example.english_project.dataModel.wordTrad
 import com.example.english_project.databinding.FragmentDatabaseBinding
 import java.util.*
@@ -21,6 +23,7 @@ class DatabaseFragment : Fragment() {
     lateinit var myRecycler: RecyclerView
     lateinit var wordAdapter: Adapter
     lateinit var wordArray: List<wordTrad>
+    private lateinit var databaseManager : WordsManager
 
 
     override fun onCreateView(
@@ -77,6 +80,12 @@ class DatabaseFragment : Fragment() {
     }
 
     fun InitArray(): List<wordTrad> {
+
+        databaseManager = WordsManager(requireContext())
+        wordArray = databaseManager.allwords
+
+
+        /*
         var mot1: wordTrad = wordTrad(0, "Bonjour", "Hello")
         var mot2: wordTrad = wordTrad(1, "Salut", "Hi")
         var mot3: wordTrad = wordTrad(2, "Manger", "Eat")
@@ -96,6 +105,8 @@ class DatabaseFragment : Fragment() {
         var mot13: wordTrad = wordTrad(3, "Boire", "Drink")
         wordArray =
             listOf(mot1, mot2, mot3, mot4, mot5, mot6, mot7, mot8, mot9, mot10, mot11, mot12, mot13)
+        */
+
         return wordArray
     }
 
