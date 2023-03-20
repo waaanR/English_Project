@@ -16,6 +16,7 @@ public class FragmentDatabaseBindingImpl extends FragmentDatabaseBinding  {
         sViewsWithIds = new android.util.SparseIntArray();
         sViewsWithIds.put(R.id.recycler_view_database, 1);
         sViewsWithIds.put(R.id.editTextSearch, 2);
+        sViewsWithIds.put(R.id.butReset, 3);
     }
     // views
     @NonNull
@@ -26,10 +27,11 @@ public class FragmentDatabaseBindingImpl extends FragmentDatabaseBinding  {
     // Inverse Binding Event Handlers
 
     public FragmentDatabaseBindingImpl(@Nullable androidx.databinding.DataBindingComponent bindingComponent, @NonNull View root) {
-        this(bindingComponent, root, mapBindings(bindingComponent, root, 3, sIncludes, sViewsWithIds));
+        this(bindingComponent, root, mapBindings(bindingComponent, root, 4, sIncludes, sViewsWithIds));
     }
     private FragmentDatabaseBindingImpl(androidx.databinding.DataBindingComponent bindingComponent, View root, Object[] bindings) {
         super(bindingComponent, root, 0
+            , (android.widget.Button) bindings[3]
             , (android.widget.SearchView) bindings[2]
             , (androidx.recyclerview.widget.RecyclerView) bindings[1]
             );

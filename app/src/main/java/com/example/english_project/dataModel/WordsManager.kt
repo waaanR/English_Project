@@ -30,9 +30,9 @@ class WordsManager (val cxt: Context) {
                 while(c.moveToNext()){
                     retval.add(
                         wordTrad(
-                            c.getInt(WordsDB.NUM_COL_ID),
                             c.getString(WordsDB.NUM_COL_FRENCH),
                             c.getString(WordsDB.NUM_COL_ENGLISH),
+                            c.getInt(WordsDB.NUM_COL_ID),
                             c.getInt(WordsDB.NUM_COL_MULTIPLIER)
                         )
                     )
@@ -76,6 +76,17 @@ class WordsManager (val cxt: Context) {
 
 
         return retval
+    }
+
+    fun reset(){
+
+        openForWrite()
+
+        bdd!!.delete(WordsDB.TABLE_WORDS,null,null)
+
+        close()
+
+        Log.d("DATABASE", "Reset BDD")
     }
 
     companion object{

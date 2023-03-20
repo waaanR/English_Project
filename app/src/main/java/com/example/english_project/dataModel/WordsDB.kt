@@ -22,6 +22,10 @@ class WordsDB(context: Context, name: String, factory: SQLiteDatabase.CursorFact
         Log.d("DATABASE", "Upgrade BDD")
     }
 
+    fun reset(){
+        db!!.execSQL("delete from " + TABLE_WORDS)
+    }
+
     companion object{
 
         val TABLE_WORDS = "table_words"

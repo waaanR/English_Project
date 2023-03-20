@@ -58,6 +58,12 @@ class DatabaseFragment : Fragment() {
             }
         })
 
+        binding.butReset.setOnClickListener {
+            databaseManager.reset()
+            tableauDeMots = InitArray()
+            wordAdapter.filterList(tableauDeMots)
+        }
+
         return binding.root
     }
 

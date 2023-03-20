@@ -29,11 +29,8 @@ class AddingPageFragment : Fragment() {
         binding.butaddword.setOnClickListener {
             val word : wordTrad
             if(!(binding.etfrench.text.isNullOrBlank()) && !(binding.etenglish.text.isNullOrBlank())){
-                word = wordTrad(1, binding.etfrench.text.toString(), binding.etenglish.text.toString())
-                Log.d("ADD A WORD", "adding the couple: " + word)
-                Log.d("ADD A WORD", databaseManager.toString())
+                word = wordTrad(binding.etfrench.text.toString(), binding.etenglish.text.toString())
                 databaseManager.insertWords(word)
-                Log.d("ADD A WORD", databaseManager.toString())
             }
             binding.etfrench.text.clear()
             binding.etenglish.text.clear()

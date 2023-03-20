@@ -19,17 +19,27 @@
 
         <SearchView
             android:id="@+id/editTextSearch"
-            android:layout_width="match_parent"
+            android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
             android:background="@drawable/edit_text_search_drawable"
             android:queryHint="Search"
             android:iconifiedByDefault="false"
             android:queryBackground="@android:color/transparent"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/butReset"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             />
+
+        <Button
+            android:id="@+id/butReset"
+            android:layout_width="82dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:text="Reset"
+            android:textSize="14dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
 
 
 
