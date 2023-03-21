@@ -20,6 +20,47 @@
                 android:layout_height="wrap_content"
                 android:text="ModifStatsFragment"
                 app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"/>
+
+            <EditText
+                android:id="@+id/etstatenglish"
+                android:layout_width="300dp"
+                android:layout_height="50dp"
+                android:hint="English word"
+                android:inputType="text"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"/>
+
+            <EditText
+                android:id="@+id/etstatfrench"
+                android:layout_width="300dp"
+                android:layout_height="50dp"
+                android:layout_margin="40dp"
+                android:hint="French word"
+                android:inputType="text"
+                app:layout_constraintTop_toBottomOf="@id/etstatenglish"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"/>
+
+            <Button
+                android:id="@+id/butmodify"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Modify"
+                app:layout_constraintTop_toBottomOf="@+id/etstatenglish"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"/>
+
+            <Button
+                android:id="@+id/butdelete"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Delete"
+                app:layout_constraintTop_toBottomOf="@+id/butmodify"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"/>

@@ -15,8 +15,8 @@ public class FragmentAddingPageBindingImpl extends FragmentAddingPageBinding  {
         sIncludes = null;
         sViewsWithIds = new android.util.SparseIntArray();
         sViewsWithIds.put(R.id.tvFragmentName, 1);
-        sViewsWithIds.put(R.id.etfrench, 2);
-        sViewsWithIds.put(R.id.etenglish, 3);
+        sViewsWithIds.put(R.id.etenglish, 2);
+        sViewsWithIds.put(R.id.etfrench, 3);
         sViewsWithIds.put(R.id.butaddword, 4);
     }
     // views
@@ -33,8 +33,8 @@ public class FragmentAddingPageBindingImpl extends FragmentAddingPageBinding  {
     private FragmentAddingPageBindingImpl(androidx.databinding.DataBindingComponent bindingComponent, View root, Object[] bindings) {
         super(bindingComponent, root, 0
             , (android.widget.Button) bindings[4]
-            , (android.widget.EditText) bindings[3]
             , (android.widget.EditText) bindings[2]
+            , (android.widget.EditText) bindings[3]
             , (android.widget.TextView) bindings[1]
             );
         this.mboundView0 = (android.widget.FrameLayout) bindings[0];

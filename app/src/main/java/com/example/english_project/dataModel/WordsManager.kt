@@ -6,10 +6,10 @@ import android.database.sqlite.SQLiteDatabase
 import android.provider.UserDictionary.Words
 import android.util.Log
 
-class WordsManager (val cxt: Context) {
+object WordsManager {
 
-    private var words: WordsDB? = null
-    private var bdd: SQLiteDatabase? = null
+    var words: WordsDB? = null
+    var bdd: SQLiteDatabase? = null
     val allwords: ArrayList<wordTrad>
         get() {
             val retval = ArrayList<wordTrad>()
@@ -26,8 +26,8 @@ class WordsManager (val cxt: Context) {
                 ), null, null, null, null, WordsDB.COL_ENGLISH
             )
 
-            if(c.count > 0){
-                while(c.moveToNext()){
+            if (c.count > 0) {
+                while (c.moveToNext()) {
                     retval.add(
                         wordTrad(
                             c.getString(WordsDB.NUM_COL_FRENCH),
@@ -44,8 +44,8 @@ class WordsManager (val cxt: Context) {
             return retval
         }
 
-    init {
-        words = WordsDB(cxt, NOM_BDD, null, 1)
+    fun init (cxt: Context){
+        words = WordsDB(cxt, "words", null, 1)
     }
 
     fun openForWrite() {
@@ -69,7 +69,7 @@ class WordsManager (val cxt: Context) {
         cv.put(WordsDB.COL_ENGLISH, words.english)
         cv.put(WordsDB.COL_MULTIPLIER, words.multiplier)
 
-        val retval = bdd!!.insert(WordsDB.TABLE_WORDS,null,cv)
+        val retval = bdd!!.insert(WordsDB.TABLE_WORDS, null, cv)
 
         close()
         Log.d("DATABASE", "Insertion BDD")
@@ -78,20 +78,47 @@ class WordsManager (val cxt: Context) {
         return retval
     }
 
-    fun reset(){
+    fun reset() {
 
         openForWrite()
 
-        bdd!!.delete(WordsDB.TABLE_WORDS,null,null)
+        bdd!!.delete(WordsDB.TABLE_WORDS, null, null)
 
         close()
 
         Log.d("DATABASE", "Reset BDD")
     }
 
-    companion object{
-        var NOM_BDD = "words"
+    fun getWord(id: Int) : wordTrad? {
+
+        openForRead()
+
+        var word : wordTrad? = null
+
+        val c = bdd!!.query(
+            WordsDB.TABLE_WORDS,
+            arrayOf(
+                WordsDB.COL_ID,
+                WordsDB.COL_FRENCH,
+                WordsDB.COL_ENGLISH,
+                WordsDB.COL_MULTIPLIER
+            ),
+            WordsDB.COL_ID + "=$id", null, null, null, WordsDB.COL_ID,
+            )
+
+        if (c.count > 0) {
+            while (c.moveToNext()) {
+                word = wordTrad(
+                        c.getString(WordsDB.NUM_COL_FRENCH),
+                        c.getString(WordsDB.NUM_COL_ENGLISH),
+                        c.getInt(WordsDB.NUM_COL_ID),
+                        c.getInt(WordsDB.NUM_COL_MULTIPLIER)
+                    )
+            }
+        }
+
+        close()
+
+        return word
     }
-
-
 }

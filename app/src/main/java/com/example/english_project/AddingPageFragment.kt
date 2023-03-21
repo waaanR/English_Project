@@ -16,7 +16,7 @@ import com.example.english_project.databinding.FragmentMenuBinding
 class AddingPageFragment : Fragment() {
 
     lateinit var binding : FragmentAddingPageBinding
-    private lateinit var databaseManager : WordsManager
+    //private lateinit var databaseManager : WordsManager
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -24,13 +24,14 @@ class AddingPageFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         binding = DataBindingUtil.inflate(inflater,R.layout.fragment_adding_page,container,false)
-        databaseManager = WordsManager(requireContext())
+        //databaseManager = WordsManager(requireContext())
 
         binding.butaddword.setOnClickListener {
             val word : wordTrad
             if(!(binding.etfrench.text.isNullOrBlank()) && !(binding.etenglish.text.isNullOrBlank())){
                 word = wordTrad(binding.etfrench.text.toString(), binding.etenglish.text.toString())
-                databaseManager.insertWords(word)
+                //databaseManager.insertWords(word)
+                WordsManager.insertWords(word)
             }
             binding.etfrench.text.clear()
             binding.etenglish.text.clear()

@@ -15,6 +15,10 @@ public class FragmentModifStatsBindingImpl extends FragmentModifStatsBinding  {
         sIncludes = null;
         sViewsWithIds = new android.util.SparseIntArray();
         sViewsWithIds.put(R.id.tvFragmentName, 1);
+        sViewsWithIds.put(R.id.etstatenglish, 2);
+        sViewsWithIds.put(R.id.etstatfrench, 3);
+        sViewsWithIds.put(R.id.butmodify, 4);
+        sViewsWithIds.put(R.id.butdelete, 5);
     }
     // views
     @NonNull
@@ -25,10 +29,14 @@ public class FragmentModifStatsBindingImpl extends FragmentModifStatsBinding  {
     // Inverse Binding Event Handlers
 
     public FragmentModifStatsBindingImpl(@Nullable androidx.databinding.DataBindingComponent bindingComponent, @NonNull View root) {
-        this(bindingComponent, root, mapBindings(bindingComponent, root, 2, sIncludes, sViewsWithIds));
+        this(bindingComponent, root, mapBindings(bindingComponent, root, 6, sIncludes, sViewsWithIds));
     }
     private FragmentModifStatsBindingImpl(androidx.databinding.DataBindingComponent bindingComponent, View root, Object[] bindings) {
         super(bindingComponent, root, 0
+            , (android.widget.Button) bindings[5]
+            , (android.widget.Button) bindings[4]
+            , (android.widget.EditText) bindings[2]
+            , (android.widget.EditText) bindings[3]
             , (android.widget.TextView) bindings[1]
             );
         this.mboundView0 = (android.widget.FrameLayout) bindings[0];

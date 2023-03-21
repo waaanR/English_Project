@@ -23,7 +23,7 @@ class DatabaseFragment : Fragment() {
     lateinit var myRecycler: RecyclerView
     lateinit var wordAdapter: Adapter
     lateinit var wordArray: List<wordTrad>
-    private lateinit var databaseManager : WordsManager
+    //private lateinit var databaseManager : WordsManager
 
 
     override fun onCreateView(
@@ -59,7 +59,8 @@ class DatabaseFragment : Fragment() {
         })
 
         binding.butReset.setOnClickListener {
-            databaseManager.reset()
+            //databaseManager.reset()
+            WordsManager.reset()
             tableauDeMots = InitArray()
             wordAdapter.filterList(tableauDeMots)
         }
@@ -86,33 +87,10 @@ class DatabaseFragment : Fragment() {
     }
 
     fun InitArray(): List<wordTrad> {
-
-        databaseManager = WordsManager(requireContext())
+        /*databaseManager = WordsManager(requireContext())
         wordArray = databaseManager.allwords
-
-
-        /*
-        var mot1: wordTrad = wordTrad(0, "Bonjour", "Hello")
-        var mot2: wordTrad = wordTrad(1, "Salut", "Hi")
-        var mot3: wordTrad = wordTrad(2, "Manger", "Eat")
-        var mot4: wordTrad = wordTrad(3, "Boire", "Drink")
-        var mot5: wordTrad = wordTrad(4, "Dormir", "Sleep")
-        var mot6: wordTrad = wordTrad(
-            5,
-            "S'asseoir sur une chaise wesh, mais toujours plus longue cette phrase ",
-            "To sit down on a chair wesh"
-        )
-        var mot7: wordTrad = wordTrad(3, "Boire", "Drink")
-        var mot8: wordTrad = wordTrad(3, "Boire", "Drink")
-        var mot9: wordTrad = wordTrad(3, "Boire", "Drink")
-        var mot10: wordTrad = wordTrad(3, "Boire", "Drink")
-        var mot11: wordTrad = wordTrad(3, "Boire", "Drink")
-        var mot12: wordTrad = wordTrad(3, "Boire", "Drink")
-        var mot13: wordTrad = wordTrad(3, "Boire", "Drink")
-        wordArray =
-            listOf(mot1, mot2, mot3, mot4, mot5, mot6, mot7, mot8, mot9, mot10, mot11, mot12, mot13)
-        */
-
+        return wordArray*/
+        wordArray = WordsManager.allwords
         return wordArray
     }
 

@@ -24,10 +24,10 @@
                 app:layout_constraintEnd_toEndOf="parent"/>
 
             <EditText
-                android:id="@+id/etfrench"
+                android:id="@+id/etenglish"
                 android:layout_width="300dp"
                 android:layout_height="50dp"
-                android:hint="French word"
+                android:hint="English word"
                 android:inputType="text"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -35,13 +35,13 @@
                 app:layout_constraintEnd_toEndOf="parent"/>
 
             <EditText
-                android:id="@+id/etenglish"
+                android:id="@+id/etfrench"
                 android:layout_width="300dp"
                 android:layout_height="50dp"
                 android:layout_margin="40dp"
-                android:hint="English word"
+                android:hint="French word"
                 android:inputType="text"
-                app:layout_constraintTop_toBottomOf="@id/etfrench"
+                app:layout_constraintTop_toBottomOf="@id/etenglish"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"/>
 
