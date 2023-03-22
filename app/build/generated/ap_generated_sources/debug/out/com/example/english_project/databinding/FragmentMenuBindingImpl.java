@@ -19,6 +19,7 @@ public class FragmentMenuBindingImpl extends FragmentMenuBinding  {
         sViewsWithIds.put(R.id.buttonIntoFlashCards, 3);
         sViewsWithIds.put(R.id.buttonIntoAddingPage, 4);
         sViewsWithIds.put(R.id.buttonIntoDatabase, 5);
+        sViewsWithIds.put(R.id.navigation_bar_menu, 6);
     }
     // views
     @NonNull
@@ -29,7 +30,7 @@ public class FragmentMenuBindingImpl extends FragmentMenuBinding  {
     // Inverse Binding Event Handlers
 
     public FragmentMenuBindingImpl(@Nullable androidx.databinding.DataBindingComponent bindingComponent, @NonNull View root) {
-        this(bindingComponent, root, mapBindings(bindingComponent, root, 6, sIncludes, sViewsWithIds));
+        this(bindingComponent, root, mapBindings(bindingComponent, root, 7, sIncludes, sViewsWithIds));
     }
     private FragmentMenuBindingImpl(androidx.databinding.DataBindingComponent bindingComponent, View root, Object[] bindings) {
         super(bindingComponent, root, 0
@@ -37,6 +38,7 @@ public class FragmentMenuBindingImpl extends FragmentMenuBinding  {
             , (android.widget.Button) bindings[5]
             , (android.widget.Button) bindings[3]
             , (android.widget.Button) bindings[2]
+            , (com.google.android.material.bottomnavigation.BottomNavigationView) bindings[6]
             , (android.widget.TextView) bindings[1]
             );
         this.mboundView0 = (android.widget.FrameLayout) bindings[0];

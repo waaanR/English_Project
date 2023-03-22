@@ -14,25 +14,29 @@ public class FragmentFlashCardBindingImpl extends FragmentFlashCardBinding  {
     static {
         sIncludes = null;
         sViewsWithIds = new android.util.SparseIntArray();
-        sViewsWithIds.put(R.id.tvFragmentName, 1);
+        sViewsWithIds.put(R.id.flash_card_constraint_layout, 1);
+        sViewsWithIds.put(R.id.top_text, 2);
+        sViewsWithIds.put(R.id.divider, 3);
+        sViewsWithIds.put(R.id.bottom_text, 4);
     }
     // views
-    @NonNull
-    private final android.widget.FrameLayout mboundView0;
     // variables
     // values
     // listeners
     // Inverse Binding Event Handlers
 
     public FragmentFlashCardBindingImpl(@Nullable androidx.databinding.DataBindingComponent bindingComponent, @NonNull View root) {
-        this(bindingComponent, root, mapBindings(bindingComponent, root, 2, sIncludes, sViewsWithIds));
+        this(bindingComponent, root, mapBindings(bindingComponent, root, 5, sIncludes, sViewsWithIds));
     }
     private FragmentFlashCardBindingImpl(androidx.databinding.DataBindingComponent bindingComponent, View root, Object[] bindings) {
         super(bindingComponent, root, 0
-            , (android.widget.TextView) bindings[1]
+            , (android.widget.TextView) bindings[4]
+            , (android.view.View) bindings[3]
+            , (androidx.cardview.widget.CardView) bindings[0]
+            , (androidx.constraintlayout.widget.ConstraintLayout) bindings[1]
+            , (android.widget.TextView) bindings[2]
             );
-        this.mboundView0 = (android.widget.FrameLayout) bindings[0];
-        this.mboundView0.setTag(null);
+        this.flashCardCardview.setTag(null);
         setRootTag(root);
         // listeners
         invalidateAll();
