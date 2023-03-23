@@ -14,7 +14,7 @@ public class FragmentSettingsBindingImpl extends FragmentSettingsBinding  {
     static {
         sIncludes = null;
         sViewsWithIds = new android.util.SparseIntArray();
-        sViewsWithIds.put(R.id.tvFragmentName, 1);
+        sViewsWithIds.put(R.id.materialButtonReset, 1);
     }
     // views
     @NonNull
@@ -29,7 +29,7 @@ public class FragmentSettingsBindingImpl extends FragmentSettingsBinding  {
     }
     private FragmentSettingsBindingImpl(androidx.databinding.DataBindingComponent bindingComponent, View root, Object[] bindings) {
         super(bindingComponent, root, 0
-            , (android.widget.TextView) bindings[1]
+            , (com.google.android.material.button.MaterialButton) bindings[1]
             );
         this.mboundView0 = (android.widget.FrameLayout) bindings[0];
         this.mboundView0.setTag(null);

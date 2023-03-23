@@ -1,7 +1,7 @@
 package com.example.english_project
 
+import android.content.DialogInterface
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.english_project.dataModel.WordsManager
 import com.example.english_project.dataModel.wordTrad
 import com.example.english_project.databinding.FragmentDatabaseBinding
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import java.util.*
 
 
@@ -58,12 +59,35 @@ class DatabaseFragment : Fragment() {
             }
         })
 
+        // bouton de Reset
         binding.butReset.setOnClickListener {
             //databaseManager.reset()
             WordsManager.reset()
             tableauDeMots = InitArray()
             wordAdapter.filterList(tableauDeMots)
         }
+
+        // bouton d'ajout d'un mot
+        binding.floatingAddingButton.setOnClickListener {
+            MaterialAlertDialogBuilder(requireContext())
+                .setTitle("Ajouter un mot")
+                .setMessage("Message")
+                .setNeutralButton("Cancel", object : DialogInterface.OnClickListener {
+                    override fun onClick(dialog: DialogInterface?, which: Int) {
+                    }
+                })
+                .setNegativeButton("Stop", object : DialogInterface.OnClickListener {
+                    override fun onClick(dialog: DialogInterface?, which: Int) {
+                    }
+                })
+                .setPositiveButton("Ok", object : DialogInterface.OnClickListener {
+                    override fun onClick(dialog: DialogInterface?, which: Int) {
+                    }
+                })
+                .show()
+        }
+
+
 
         return binding.root
     }
@@ -75,8 +99,7 @@ class DatabaseFragment : Fragment() {
             val wordArrayFiltered = mutableListOf<wordTrad>()
             for (word in wordArray) {
                 if (word.french.lowercase(Locale.ROOT)
-                        .contains(newText.lowercase(Locale.ROOT))
-                    || word.english.lowercase(Locale.ROOT)
+                        .contains(newText.lowercase(Locale.ROOT)) || word.english.lowercase(Locale.ROOT)
                         .contains(newText.lowercase(Locale.ROOT))
                 ) {
                     wordArrayFiltered.add(word)
