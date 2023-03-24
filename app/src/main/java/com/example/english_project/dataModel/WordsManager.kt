@@ -121,4 +121,14 @@ object WordsManager {
 
         return word
     }
+
+    fun deleteWord(id : Int){
+
+        openForWrite()
+
+        bdd!!.delete(WordsDB.TABLE_WORDS, WordsDB.COL_ID + "=$id", null)
+
+        close()
+
+    }
 }
