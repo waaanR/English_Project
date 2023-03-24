@@ -46,7 +46,11 @@
         tools:layout="@layout/fragment_settings">
         <action
             android:id="@+id/action_settingsFragment_to_menuFragment"
-            app:destination="@id/menuFragment" />
+            app:destination="@id/menuFragment"
+            app:enterAnim="@anim/from_right"
+            app:exitAnim="@anim/to_left"
+            app:popEnterAnim="@anim/from_left"
+            app:popExitAnim="@anim/to_right"/>
     </fragment>
     <fragment
         android:id="@+id/addingPageFragment"
@@ -55,7 +59,11 @@
         tools:layout="@layout/fragment_adding_page">
         <action
             android:id="@+id/action_addingPageFragment_to_menuFragment"
-            app:destination="@id/menuFragment" />
+            app:destination="@id/menuFragment"
+            app:enterAnim="@anim/from_right"
+            app:exitAnim="@anim/to_left"
+            app:popEnterAnim="@anim/from_left"
+            app:popExitAnim="@anim/to_right"/>
     </fragment>
     <fragment
         android:id="@+id/databaseFragment"
@@ -64,10 +72,18 @@
         tools:layout="@layout/fragment_database">
         <action
             android:id="@+id/action_databaseFragment_to_modifStatsFragment"
-            app:destination="@id/modifStatsFragment" />
+            app:destination="@id/modifStatsFragment"
+            app:enterAnim="@anim/from_right"
+            app:exitAnim="@anim/to_left"
+            app:popEnterAnim="@anim/from_left"
+            app:popExitAnim="@anim/to_right"/>
         <action
             android:id="@+id/action_databaseFragment_to_menuFragment"
-            app:destination="@id/menuFragment" />
+            app:destination="@id/menuFragment"
+            app:enterAnim="@anim/from_right"
+            app:exitAnim="@anim/to_left"
+            app:popEnterAnim="@anim/from_left"
+            app:popExitAnim="@anim/to_right"/>
 
     </fragment>
     <fragment
@@ -77,7 +93,11 @@
         tools:layout="@layout/fragment_flash_card">
         <action
             android:id="@+id/action_flashCardFragment_to_menuFragment"
-            app:destination="@id/menuFragment" />
+            app:destination="@id/menuFragment"
+            app:enterAnim="@anim/from_right"
+            app:exitAnim="@anim/to_left"
+            app:popEnterAnim="@anim/from_left"
+            app:popExitAnim="@anim/to_right"/>
     </fragment>
     <fragment
         android:id="@+id/modifStatsFragment"
@@ -87,10 +107,16 @@
         <action
             android:id="@+id/action_modifStatsFragment_to_databaseFragment"
             app:destination="@id/databaseFragment"
-            app:popUpTo="@id/databaseFragment"
-            app:popUpToInclusive="true" />
+            app:enterAnim="@anim/from_right"
+            app:exitAnim="@anim/to_left"
+            app:popEnterAnim="@anim/from_left"
+            app:popExitAnim="@anim/to_right"/>
         <argument
             android:name="id_word_trad"
-            app:argType="integer" />
+            app:argType="integer"
+            app:enterAnim="@anim/from_right"
+            app:exitAnim="@anim/to_left"
+            app:popEnterAnim="@anim/from_left"
+            app:popExitAnim="@anim/to_right"/>
     </fragment>
 </navigation>

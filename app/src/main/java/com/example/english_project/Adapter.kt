@@ -49,9 +49,25 @@ class Adapter(
 
 
     // fonction de filtre pour la searchview
-    fun filterList(filteredWordList: List<wordTrad>) {
-        this.dataFilterList = filteredWordList
+    fun filterList(newText: String?) {
+        val filteredWordList = mutableListOf<wordTrad>()
+        if (newText.isNullOrBlank()) {
+            this.dataFilterList = filteredWordList
+        }
+        else {
+            for (word in datalist) {
+                if (word.french.lowercase(Locale.ROOT)
+                        .contains(newText.lowercase(Locale.ROOT)) || word.english.lowercase(Locale.ROOT)
+                        .contains(newText.lowercase(Locale.ROOT))
+                ) {
+                    filteredWordList.add(word)
+                }
+            }
+            this.dataFilterList = filteredWordList
+        }
         notifyDataSetChanged()
+
+
     }
 }
 

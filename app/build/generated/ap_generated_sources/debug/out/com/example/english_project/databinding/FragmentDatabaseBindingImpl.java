@@ -18,6 +18,7 @@ public class FragmentDatabaseBindingImpl extends FragmentDatabaseBinding  {
         sViewsWithIds.put(R.id.editTextSearch, 2);
         sViewsWithIds.put(R.id.butReset, 3);
         sViewsWithIds.put(R.id.floatingAddingButton, 4);
+        sViewsWithIds.put(R.id.fragment_container_view, 5);
     }
     // views
     @NonNull
@@ -28,13 +29,14 @@ public class FragmentDatabaseBindingImpl extends FragmentDatabaseBinding  {
     // Inverse Binding Event Handlers
 
     public FragmentDatabaseBindingImpl(@Nullable androidx.databinding.DataBindingComponent bindingComponent, @NonNull View root) {
-        this(bindingComponent, root, mapBindings(bindingComponent, root, 5, sIncludes, sViewsWithIds));
+        this(bindingComponent, root, mapBindings(bindingComponent, root, 6, sIncludes, sViewsWithIds));
     }
     private FragmentDatabaseBindingImpl(androidx.databinding.DataBindingComponent bindingComponent, View root, Object[] bindings) {
         super(bindingComponent, root, 0
             , (android.widget.Button) bindings[3]
             , (android.widget.SearchView) bindings[2]
             , (com.google.android.material.floatingactionbutton.FloatingActionButton) bindings[4]
+            , (androidx.fragment.app.FragmentContainerView) bindings[5]
             , (androidx.recyclerview.widget.RecyclerView) bindings[1]
             );
         this.mboundView0 = (androidx.constraintlayout.widget.ConstraintLayout) bindings[0];
