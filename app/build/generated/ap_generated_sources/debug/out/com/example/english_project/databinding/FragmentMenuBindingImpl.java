@@ -14,34 +14,28 @@ public class FragmentMenuBindingImpl extends FragmentMenuBinding  {
     static {
         sIncludes = null;
         sViewsWithIds = new android.util.SparseIntArray();
-        sViewsWithIds.put(R.id.tvFragmentName, 1);
-        sViewsWithIds.put(R.id.buttonIntoSetting, 2);
-        sViewsWithIds.put(R.id.buttonIntoFlashCards, 3);
-        sViewsWithIds.put(R.id.buttonIntoAddingPage, 4);
-        sViewsWithIds.put(R.id.buttonIntoDatabase, 5);
-        sViewsWithIds.put(R.id.navigation_bar_menu, 6);
+        sViewsWithIds.put(R.id.buttonIntoFlashCards, 1);
+        sViewsWithIds.put(R.id.buttonIntoDatabase, 2);
+        sViewsWithIds.put(R.id.buttonIntoSetting, 3);
     }
     // views
     @NonNull
-    private final android.widget.FrameLayout mboundView0;
+    private final androidx.constraintlayout.widget.ConstraintLayout mboundView0;
     // variables
     // values
     // listeners
     // Inverse Binding Event Handlers
 
     public FragmentMenuBindingImpl(@Nullable androidx.databinding.DataBindingComponent bindingComponent, @NonNull View root) {
-        this(bindingComponent, root, mapBindings(bindingComponent, root, 7, sIncludes, sViewsWithIds));
+        this(bindingComponent, root, mapBindings(bindingComponent, root, 4, sIncludes, sViewsWithIds));
     }
     private FragmentMenuBindingImpl(androidx.databinding.DataBindingComponent bindingComponent, View root, Object[] bindings) {
         super(bindingComponent, root, 0
-            , (android.widget.Button) bindings[4]
-            , (android.widget.Button) bindings[5]
-            , (android.widget.Button) bindings[3]
-            , (android.widget.Button) bindings[2]
-            , (com.google.android.material.bottomnavigation.BottomNavigationView) bindings[6]
-            , (android.widget.TextView) bindings[1]
+            , (com.google.android.material.card.MaterialCardView) bindings[2]
+            , (com.google.android.material.card.MaterialCardView) bindings[1]
+            , (com.google.android.material.floatingactionbutton.FloatingActionButton) bindings[3]
             );
-        this.mboundView0 = (android.widget.FrameLayout) bindings[0];
+        this.mboundView0 = (androidx.constraintlayout.widget.ConstraintLayout) bindings[0];
         this.mboundView0.setTag(null);
         setRootTag(root);
         // listeners

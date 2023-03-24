@@ -1,6 +1,5 @@
 package com.example.english_project
 
-import android.content.DialogInterface
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -14,8 +13,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.english_project.dataModel.WordsManager
 import com.example.english_project.dataModel.wordTrad
 import com.example.english_project.databinding.FragmentDatabaseBinding
-import com.google.android.material.dialog.MaterialAlertDialogBuilder
-import java.util.*
 
 
 class DatabaseFragment : Fragment() {
@@ -24,6 +21,7 @@ class DatabaseFragment : Fragment() {
     lateinit var myRecycler: RecyclerView
     lateinit var wordAdapter: Adapter
     lateinit var wordArray: List<wordTrad>
+    var dejaClique: Boolean = false
     //private lateinit var databaseManager : WordsManager
 
 
@@ -64,29 +62,39 @@ class DatabaseFragment : Fragment() {
             //databaseManager.reset()
             WordsManager.reset()
             tableauDeMots = InitArray()
-            wordAdapter.filterList(tableauDeMots)
+            wordAdapter.filterList(null)
         }
 
         // bouton d'ajout d'un mot
+        val fragment = AddingPageFragment() // Créer une instance de votre fragment
+        val fragmentManager =
+            requireActivity().supportFragmentManager // Obtenir le FragmentManager
         binding.floatingAddingButton.setOnClickListener {
-            MaterialAlertDialogBuilder(requireContext())
-                .setTitle("Ajouter un mot")
-                .setMessage("Message")
-                .setNeutralButton("Cancel", object : DialogInterface.OnClickListener {
-                    override fun onClick(dialog: DialogInterface?, which: Int) {
-                    }
-                })
-                .setNegativeButton("Stop", object : DialogInterface.OnClickListener {
-                    override fun onClick(dialog: DialogInterface?, which: Int) {
-                    }
-                })
-                .setPositiveButton("Ok", object : DialogInterface.OnClickListener {
-                    override fun onClick(dialog: DialogInterface?, which: Int) {
-                    }
-                })
-                .show()
-        }
+            if (!dejaClique) {
+                val fragmentTransaction =
+                    fragmentManager.beginTransaction() // Commencer une transaction de fragment
+                        .setCustomAnimations(
+                            R.anim.from_right,
+                            R.anim.to_left
+                        )
+                fragmentTransaction.replace(
+                    R.id.fragment_container_view,
+                    fragment
+                ) // Remplacer le contenu du FragmentContainerView par votre fragment
+                fragmentTransaction.addToBackStack(null) // Ajouter la transaction à la pile de retour pour permettre à l'utilisateur de revenir en arrière
+                fragmentTransaction.commit() // Terminer la transaction
+                dejaClique = true
+            } else {
+                val fragmentTransaction = fragmentManager.beginTransaction()
+                fragmentTransaction.setCustomAnimations(
+                    R.anim.from_left,
+                    R.anim.to_right
+                )
+                fragmentTransaction.remove(fragment).commit()
+                dejaClique = false
+            }
 
+        }
 
 
         return binding.root
@@ -94,19 +102,7 @@ class DatabaseFragment : Fragment() {
 
     // fonction de filtre de la searchview
     fun ListFilter(newText: String?) {
-        if (newText.isNullOrBlank()) wordAdapter.filterList(wordArray)
-        else {
-            val wordArrayFiltered = mutableListOf<wordTrad>()
-            for (word in wordArray) {
-                if (word.french.lowercase(Locale.ROOT)
-                        .contains(newText.lowercase(Locale.ROOT)) || word.english.lowercase(Locale.ROOT)
-                        .contains(newText.lowercase(Locale.ROOT))
-                ) {
-                    wordArrayFiltered.add(word)
-                }
-            }
-            wordAdapter.filterList(wordArrayFiltered)
-        }
+        wordAdapter.filterList(newText)
     }
 
     fun InitArray(): List<wordTrad> {
