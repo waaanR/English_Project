@@ -52,7 +52,6 @@ class ModifStatsFragment : Fragment() {
                         WordsManager.deleteWord(word.id)
                         val action = ModifStatsFragmentDirections.actionModifStatsFragmentToDatabaseFragment()
                         findNavController().navigate(action)
-
                     }
                 })
                 .show()
