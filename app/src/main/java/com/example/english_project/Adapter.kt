@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import android.widget.Filter
 import android.widget.Filterable
 import androidx.recyclerview.widget.RecyclerView
+import com.example.english_project.dataModel.WordsManager
 import com.example.english_project.dataModel.wordTrad
 import com.example.english_project.databinding.ItemTraductionBinding
 import java.util.*
@@ -51,8 +52,11 @@ class Adapter(
     // fonction de filtre pour la searchview
     fun filterList(newText: String?) {
         val filteredWordList = mutableListOf<wordTrad>()
-        if (newText.isNullOrBlank()) {
+        if (newText.equals(null)) {
             this.dataFilterList = filteredWordList
+        } else if (newText!!.isBlank()) {
+            actualizeArray()
+            this.dataFilterList = datalist
         }
         else {
             for (word in datalist) {
@@ -69,6 +73,13 @@ class Adapter(
 
 
     }
+
+    fun actualizeArray() {
+        datalist = WordsManager.allwords
+    }
+
 }
+
+
 
 

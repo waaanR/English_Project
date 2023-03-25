@@ -8,6 +8,7 @@ import android.view.animation.AlphaAnimation
 import android.view.animation.Animation
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import com.example.english_project.dataModel.Global
 import com.example.english_project.dataModel.WordsManager
 import com.example.english_project.dataModel.wordTrad
 import com.example.english_project.databinding.FragmentFlashCardBinding
@@ -56,8 +57,16 @@ class FlashCardFragment : Fragment() {
         var random: Int = (Math.random() * (taille - 1 + 1) + 1).toInt()
         // random * (max - min + 1) + min
         var motActuel: wordTrad = WordsManager.allwords[random - 1]
-        binding.topText.text = motActuel.french
-        binding.bottomText.text = motActuel.english
+
+        // mot français ou anglais en fonction du mode
+        if (Global.mode.equals("French")) {
+            binding.topText.text = motActuel.french
+            binding.bottomText.text = motActuel.english
+        } else {
+            binding.topText.text = motActuel.english
+            binding.bottomText.text = motActuel.french
+        }
+
     }
 
     fun apparitionPremierClick() {

@@ -61,7 +61,6 @@ class DatabaseFragment : Fragment() {
         binding.butReset.setOnClickListener {
             //databaseManager.reset()
             WordsManager.reset()
-            tableauDeMots = InitArray()
             wordAdapter.filterList(null)
         }
 

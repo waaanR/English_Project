@@ -14,24 +14,32 @@ public class FragmentSettingsBindingImpl extends FragmentSettingsBinding  {
     static {
         sIncludes = null;
         sViewsWithIds = new android.util.SparseIntArray();
-        sViewsWithIds.put(R.id.materialButtonReset, 1);
+        sViewsWithIds.put(R.id.mode, 1);
+        sViewsWithIds.put(R.id.toggleGroupMode, 2);
+        sViewsWithIds.put(R.id.french_selection, 3);
+        sViewsWithIds.put(R.id.english_selection, 4);
+        sViewsWithIds.put(R.id.materialButtonReset, 5);
     }
     // views
     @NonNull
-    private final android.widget.FrameLayout mboundView0;
+    private final androidx.constraintlayout.widget.ConstraintLayout mboundView0;
     // variables
     // values
     // listeners
     // Inverse Binding Event Handlers
 
     public FragmentSettingsBindingImpl(@Nullable androidx.databinding.DataBindingComponent bindingComponent, @NonNull View root) {
-        this(bindingComponent, root, mapBindings(bindingComponent, root, 2, sIncludes, sViewsWithIds));
+        this(bindingComponent, root, mapBindings(bindingComponent, root, 6, sIncludes, sViewsWithIds));
     }
     private FragmentSettingsBindingImpl(androidx.databinding.DataBindingComponent bindingComponent, View root, Object[] bindings) {
         super(bindingComponent, root, 0
-            , (com.google.android.material.button.MaterialButton) bindings[1]
+            , (com.google.android.material.button.MaterialButton) bindings[4]
+            , (com.google.android.material.button.MaterialButton) bindings[3]
+            , (com.google.android.material.button.MaterialButton) bindings[5]
+            , (com.google.android.material.textview.MaterialTextView) bindings[1]
+            , (com.google.android.material.button.MaterialButtonToggleGroup) bindings[2]
             );
-        this.mboundView0 = (android.widget.FrameLayout) bindings[0];
+        this.mboundView0 = (androidx.constraintlayout.widget.ConstraintLayout) bindings[0];
         this.mboundView0.setTag(null);
         setRootTag(root);
         // listeners

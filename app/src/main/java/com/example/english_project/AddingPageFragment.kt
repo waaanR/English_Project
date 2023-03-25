@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.recyclerview.widget.RecyclerView
 import com.example.english_project.dataModel.WordsManager
 import com.example.english_project.dataModel.wordTrad
 import com.example.english_project.databinding.FragmentAddingPageBinding
@@ -26,6 +27,10 @@ class AddingPageFragment : Fragment() {
         binding = DataBindingUtil.inflate(inflater,R.layout.fragment_adding_page,container,false)
         //databaseManager = WordsManager(requireContext())
 
+        // récupération de la fonction filterList
+        val recyclerView = requireActivity().findViewById<RecyclerView>(R.id.recycler_view_database)
+        val adapter = recyclerView.adapter as Adapter
+        // bouton add
         binding.butaddword.setOnClickListener {
             val word : wordTrad
             if(!(binding.etfrench.text.isNullOrBlank()) && !(binding.etenglish.text.isNullOrBlank())){
@@ -35,7 +40,7 @@ class AddingPageFragment : Fragment() {
             }
             binding.etfrench.text.clear()
             binding.etenglish.text.clear()
-
+            adapter.filterList("")
         }
 
 
