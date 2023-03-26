@@ -5,6 +5,8 @@ import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import android.provider.UserDictionary.Words
 import android.util.Log
+import java.util.*
+import kotlin.collections.ArrayList
 
 object WordsManager {
 
@@ -58,6 +60,15 @@ object WordsManager {
 
     fun close() {
         words!!.close()
+    }
+
+    fun containsWordTrad(word: wordTrad): Boolean {
+        allwords.forEach {
+            if(it.english.lowercase(Locale.ROOT).equals(word.english.lowercase(Locale.ROOT)) && it.french.lowercase(Locale.ROOT).equals(word.french.lowercase(Locale.ROOT))){
+                return true
+            }
+        }
+        return false
     }
 
     fun insertWords(words: wordTrad): Long {

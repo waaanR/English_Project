@@ -73,10 +73,10 @@
         <action
             android:id="@+id/action_databaseFragment_to_modifStatsFragment"
             app:destination="@id/modifStatsFragment"
-            app:enterAnim="@anim/from_right"
-            app:exitAnim="@anim/to_left"
-            app:popEnterAnim="@anim/from_left"
-            app:popExitAnim="@anim/to_right"/>
+            app:enterAnim="@anim/from_left"
+            app:exitAnim="@anim/to_right"
+            app:popEnterAnim="@anim/from_right"
+            app:popExitAnim="@anim/to_left"/>
         <action
             android:id="@+id/action_databaseFragment_to_menuFragment"
             app:destination="@id/menuFragment"

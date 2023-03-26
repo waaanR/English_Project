@@ -7,15 +7,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
-import androidx.fragment.app.FragmentActivity
-import androidx.fragment.app.FragmentManager
-import androidx.fragment.app.FragmentManager.FragmentLifecycleCallbacks
-import androidx.navigation.fragment.FragmentNavigator
-import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.english_project.dataModel.WordsManager
-import com.example.english_project.databinding.FragmentMenuBinding
+import com.example.english_project.dataModel.wordTrad
 import com.example.english_project.databinding.FragmentModifStatsBinding
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 
@@ -34,10 +29,10 @@ class ModifStatsFragment : Fragment() {
         binding = DataBindingUtil.inflate(inflater,R.layout.fragment_modif_stats,container,false)
 
 
-        val word = WordsManager.getWord(args.idWordTrad)
+        val wordManager = WordsManager.getWord(args.idWordTrad)
 
-        binding.etstatfrench.hint = word!!.french
-        binding.etstatenglish.hint = word!!.english
+        binding.etstatfrench.hint = wordManager!!.french
+        binding.etstatenglish.hint = wordManager!!.english
 
         binding.butdelete.setOnClickListener {
             MaterialAlertDialogBuilder(requireContext())
@@ -49,7 +44,7 @@ class ModifStatsFragment : Fragment() {
                 })
                 .setPositiveButton("Delete", object : DialogInterface.OnClickListener {
                     override fun onClick(dialog: DialogInterface?, which: Int) {
-                        WordsManager.deleteWord(word.id)
+                        WordsManager.deleteWord(wordManager.id)
                         val action = ModifStatsFragmentDirections.actionModifStatsFragmentToDatabaseFragment()
                         findNavController().navigate(action)
                     }
@@ -58,7 +53,28 @@ class ModifStatsFragment : Fragment() {
         }
 
         binding.butmodify.setOnClickListener {
-
+            val word : wordTrad
+            if(!(binding.etstatfrench.text.isNullOrBlank()) && !(binding.etstatenglish.text.isNullOrBlank())){
+                word = wordTrad(binding.etstatfrench.text.toString(), binding.etstatenglish.text.toString())
+                if(!WordsManager.containsWordTrad(word)){
+                    //databaseManager.insertWords(word)
+                    WordsManager.deleteWord(args.idWordTrad)
+                    WordsManager.insertWords(word)
+                    binding.etstatfrench.hint = word.french
+                    binding.etstatenglish.hint = word.english
+                } else {
+                    MaterialAlertDialogBuilder(requireContext())
+                        .setTitle("This translation already exists.")
+                        .setMessage("The translation you want to add already exists.")
+                        .setNeutralButton("OK", object : DialogInterface.OnClickListener {
+                            override fun onClick(dialog: DialogInterface?, which: Int) {
+                            }
+                        })
+                        .show()
+                }
+            }
+            binding.etstatfrench.text.clear()
+            binding.etstatenglish.text.clear()
         }
 
 
