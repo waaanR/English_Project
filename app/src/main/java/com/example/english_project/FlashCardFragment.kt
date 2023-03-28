@@ -1,6 +1,7 @@
 package com.example.english_project
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,6 +10,7 @@ import android.view.animation.Animation
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import com.example.english_project.dataModel.Global
+import com.example.english_project.dataModel.Global.prefix
 import com.example.english_project.dataModel.WordsManager
 import com.example.english_project.dataModel.wordTrad
 import com.example.english_project.databinding.FragmentFlashCardBinding
@@ -53,10 +55,11 @@ class FlashCardFragment : Fragment() {
 
     // fait just un random
     fun selectionMotAleatoire() {
-        var taille: Int = WordsManager.allwords.size
-        var random: Int = (Math.random() * (taille - 1 + 1) + 1).toInt()
+
+        //récupération de l'index aléatoire
+        var random: Int = myRand()
         // random * (max - min + 1) + min
-        var motActuel: wordTrad = WordsManager.allwords[random - 1]
+        var motActuel: wordTrad = WordsManager.allwords[random]
 
         // mot français ou anglais en fonction du mode
         if (Global.mode.equals("French")) {
@@ -68,6 +71,35 @@ class FlashCardFragment : Fragment() {
         }
 
     }
+
+    // random amélioré avec probabilités
+    // findCeil permet de connaitre la case qu'il faudra prendre dans le allwords
+    fun findCeil(r: Int, l: Int, h: Int) : Int {
+        var mid: Int
+        var l1 = l
+        var h1 = h
+        while (l1 < h1){
+            mid = ((l1 + h1)/2).toInt()
+            if (r > prefix[mid]) l1 = mid + 1
+            else h1 = mid
+        }
+        if (prefix[l1] >= r) return l1
+        else return -1
+    }
+
+    // myRand est le générateur du nombre random en fonction du tableau des fréquences d'apparition
+    fun myRand() : Int {
+
+        var taille : Int = WordsManager.allwords.size
+
+        var random: Int = (((Math.random() * 20) % prefix[taille-1])).toInt()
+        Log.d("random", random.toString())
+
+        var indexc : Int = findCeil(random, 0, taille-1)
+        println(indexc.toString())
+        return indexc
+    }
+
 
     fun apparitionPremierClick() {
         // animation de fondu quand un texte arrive

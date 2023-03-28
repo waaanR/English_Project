@@ -1,10 +1,12 @@
 package com.example.english_project
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.SearchView
+import androidx.core.view.get
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
@@ -12,6 +14,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.english_project.dataModel.WordsManager
 import com.example.english_project.dataModel.wordTrad
+import com.example.english_project.databinding.FragmentAddingPageBinding
 import com.example.english_project.databinding.FragmentDatabaseBinding
 
 
@@ -95,6 +98,11 @@ class DatabaseFragment : Fragment() {
 
         }
 
+        /*var mavue = binding.fragmentContainerView[0]
+        var binding2 = FragmentAddingPageBinding.bind(mavue)
+        binding2.butaddword.setOnClickListener {
+            Log.d("salut", "wesh")
+        }*/
 
         return binding.root
     }

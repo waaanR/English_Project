@@ -10,6 +10,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.fragment.findNavController
+import com.example.english_project.dataModel.Global
 import com.example.english_project.dataModel.WordsManager
 import com.example.english_project.databinding.FragmentMenuBinding
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
@@ -39,6 +40,7 @@ class MenuFragment : Fragment() {
 
         binding.buttonIntoFlashCards.setOnClickListener {
             if (!WordsManager.allwords.isEmpty()) {
+                Global.initPrefix()
                 val action=MenuFragmentDirections.actionMenuFragmentToFlashCardFragment()
                 findNavController().navigate(action)
             } else {

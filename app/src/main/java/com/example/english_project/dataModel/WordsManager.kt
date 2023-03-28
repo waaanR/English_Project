@@ -3,10 +3,8 @@ package com.example.english_project.dataModel
 import android.content.ContentValues
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
-import android.provider.UserDictionary.Words
 import android.util.Log
 import java.util.*
-import kotlin.collections.ArrayList
 
 object WordsManager {
 
@@ -46,7 +44,8 @@ object WordsManager {
             return retval
         }
 
-    fun init (cxt: Context){
+
+    fun init(cxt: Context) {
         words = WordsDB(cxt, "words", null, 1)
     }
 
@@ -64,7 +63,10 @@ object WordsManager {
 
     fun containsWordTrad(word: wordTrad): Boolean {
         allwords.forEach {
-            if(it.english.lowercase(Locale.ROOT).equals(word.english.lowercase(Locale.ROOT)) && it.french.lowercase(Locale.ROOT).equals(word.french.lowercase(Locale.ROOT))){
+            if (it.english.lowercase(Locale.ROOT)
+                    .equals(word.english.lowercase(Locale.ROOT)) && it.french.lowercase(Locale.ROOT)
+                    .equals(word.french.lowercase(Locale.ROOT))
+            ) {
                 return true
             }
         }
@@ -100,11 +102,11 @@ object WordsManager {
         Log.d("DATABASE", "Reset BDD")
     }
 
-    fun getWord(id: Int) : wordTrad? {
+    fun getWord(id: Int): wordTrad? {
 
         openForRead()
 
-        var word : wordTrad? = null
+        var word: wordTrad? = null
 
         val c = bdd!!.query(
             WordsDB.TABLE_WORDS,
@@ -115,16 +117,16 @@ object WordsManager {
                 WordsDB.COL_MULTIPLIER
             ),
             WordsDB.COL_ID + "=$id", null, null, null, WordsDB.COL_ID,
-            )
+        )
 
         if (c.count > 0) {
             while (c.moveToNext()) {
                 word = wordTrad(
-                        c.getString(WordsDB.NUM_COL_FRENCH),
-                        c.getString(WordsDB.NUM_COL_ENGLISH),
-                        c.getInt(WordsDB.NUM_COL_ID),
-                        c.getInt(WordsDB.NUM_COL_MULTIPLIER)
-                    )
+                    c.getString(WordsDB.NUM_COL_FRENCH),
+                    c.getString(WordsDB.NUM_COL_ENGLISH),
+                    c.getInt(WordsDB.NUM_COL_ID),
+                    c.getInt(WordsDB.NUM_COL_MULTIPLIER)
+                )
             }
         }
 
@@ -133,11 +135,29 @@ object WordsManager {
         return word
     }
 
-    fun deleteWord(id : Int){
+    fun deleteWord(id: Int) {
 
         openForWrite()
 
         bdd!!.delete(WordsDB.TABLE_WORDS, WordsDB.COL_ID + "=$id", null)
+
+        close()
+
+    }
+
+    // pour actualiser un multiplier
+    fun multiplierActualize(id: Int, newMultiplier: Int) {
+
+        openForWrite()
+
+        val cv = ContentValues()
+        cv.put(WordsDB.COL_MULTIPLIER, newMultiplier)
+        bdd!!.update(
+            WordsDB.TABLE_WORDS,
+            cv,
+            WordsDB.COL_ID + "=$id",
+            null
+        )
 
         close()
 
