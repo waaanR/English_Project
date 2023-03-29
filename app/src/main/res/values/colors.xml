@@ -9,5 +9,8 @@
     <color name="white">#FFFFFFFF</color>
     <color name="primaryColor">#4d8ab0</color>
     <color name="primaryColorDark">#315b75</color>
+    <color name="yes">#6B9044</color>
+    <color name="no">#C13D39</color>
+
 
 </resources>

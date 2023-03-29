@@ -14,12 +14,14 @@ public class FragmentFlashCardBindingImpl extends FragmentFlashCardBinding  {
     static {
         sIncludes = null;
         sViewsWithIds = new android.util.SparseIntArray();
-        sViewsWithIds.put(R.id.floatingAddingButton, 1);
-        sViewsWithIds.put(R.id.flash_card_cardview, 2);
-        sViewsWithIds.put(R.id.flash_card_constraint_layout, 3);
-        sViewsWithIds.put(R.id.top_text, 4);
-        sViewsWithIds.put(R.id.divider, 5);
-        sViewsWithIds.put(R.id.bottom_text, 6);
+        sViewsWithIds.put(R.id.flash_card_cardview, 1);
+        sViewsWithIds.put(R.id.flash_card_constraint_layout, 2);
+        sViewsWithIds.put(R.id.top_text, 3);
+        sViewsWithIds.put(R.id.divider, 4);
+        sViewsWithIds.put(R.id.bottom_text, 5);
+        sViewsWithIds.put(R.id.no_proba_button, 6);
+        sViewsWithIds.put(R.id.yes_proba_button, 7);
+        sViewsWithIds.put(R.id.floattingBackButton, 8);
     }
     // views
     @NonNull
@@ -30,16 +32,18 @@ public class FragmentFlashCardBindingImpl extends FragmentFlashCardBinding  {
     // Inverse Binding Event Handlers
 
     public FragmentFlashCardBindingImpl(@Nullable androidx.databinding.DataBindingComponent bindingComponent, @NonNull View root) {
-        this(bindingComponent, root, mapBindings(bindingComponent, root, 7, sIncludes, sViewsWithIds));
+        this(bindingComponent, root, mapBindings(bindingComponent, root, 9, sIncludes, sViewsWithIds));
     }
     private FragmentFlashCardBindingImpl(androidx.databinding.DataBindingComponent bindingComponent, View root, Object[] bindings) {
         super(bindingComponent, root, 0
-            , (android.widget.TextView) bindings[6]
-            , (android.view.View) bindings[5]
-            , (androidx.cardview.widget.CardView) bindings[2]
-            , (androidx.constraintlayout.widget.ConstraintLayout) bindings[3]
-            , (com.google.android.material.floatingactionbutton.FloatingActionButton) bindings[1]
-            , (android.widget.TextView) bindings[4]
+            , (android.widget.TextView) bindings[5]
+            , (android.view.View) bindings[4]
+            , (androidx.cardview.widget.CardView) bindings[1]
+            , (androidx.constraintlayout.widget.ConstraintLayout) bindings[2]
+            , (com.google.android.material.floatingactionbutton.FloatingActionButton) bindings[8]
+            , (com.google.android.material.floatingactionbutton.FloatingActionButton) bindings[6]
+            , (android.widget.TextView) bindings[3]
+            , (com.google.android.material.floatingactionbutton.FloatingActionButton) bindings[7]
             );
         this.mboundView0 = (androidx.constraintlayout.widget.ConstraintLayout) bindings[0];
         this.mboundView0.setTag(null);

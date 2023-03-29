@@ -5,6 +5,9 @@ object Global {
     // mode de jeu
     var mode : String = "French"
 
+    // nombre max de mots
+    val NOMBRE_MAX_MOTS = 10000
+
     // initialisation des tableaux pour les flashcards
     // permet de le faire qu'une seule fois pour gagner en performances
     lateinit var freq : IntArray

@@ -159,6 +159,8 @@ object WordsManager {
             null
         )
 
+        Log.d("ça a marché !!", "youpi   " + newMultiplier)
+
         close()
 
     }
