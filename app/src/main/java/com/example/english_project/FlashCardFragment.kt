@@ -1,5 +1,6 @@
 package com.example.english_project
 
+import android.graphics.Color
 import android.os.Bundle
 import android.os.Looper
 import android.util.Log
@@ -8,6 +9,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.animation.AlphaAnimation
 import android.view.animation.Animation
+import androidx.core.content.ContextCompat
+import androidx.core.graphics.drawable.toDrawable
 import androidx.core.os.HandlerCompat
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
@@ -122,7 +125,12 @@ class FlashCardFragment : Fragment() {
             }
 
             // couleur flashcard
-
+            var color = ContextCompat.getColor(requireContext(), R.color.no)
+            binding.flashCardCardview.setCardBackgroundColor(color)
+            color = ContextCompat.getColor(requireContext(), R.color.white)
+            handler.postDelayed({
+                binding.flashCardCardview.setCardBackgroundColor(color)
+            }, TimeUnit.MILLISECONDS.toMillis(DUREE_ANIMATION_FLASHCARD * 2))
 
             //animation flashcard
             flashcardAnimationGauche()
@@ -157,6 +165,14 @@ class FlashCardFragment : Fragment() {
             } else {
                 WordsManager.multiplierActualize(rang, VAL_MAX_SOUSTRACTION)
             }
+
+            // couleur flashcard
+            var color = ContextCompat.getColor(requireContext(), R.color.yes)
+            binding.flashCardCardview.setCardBackgroundColor(color)
+            color = ContextCompat.getColor(requireContext(), R.color.white)
+            handler.postDelayed({
+                binding.flashCardCardview.setCardBackgroundColor(color)
+            }, TimeUnit.MILLISECONDS.toMillis(DUREE_ANIMATION_FLASHCARD * 2))
 
             //animation flashcard
             flashcardAnimationDroite()
