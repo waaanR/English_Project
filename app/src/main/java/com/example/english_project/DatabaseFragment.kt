@@ -1,12 +1,12 @@
 package com.example.english_project
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.AlphaAnimation
+import android.view.animation.Animation
 import android.widget.SearchView
-import androidx.core.view.get
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
@@ -14,7 +14,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.english_project.dataModel.WordsManager
 import com.example.english_project.dataModel.wordTrad
-import com.example.english_project.databinding.FragmentAddingPageBinding
 import com.example.english_project.databinding.FragmentDatabaseBinding
 
 
@@ -26,6 +25,10 @@ class DatabaseFragment : Fragment() {
     lateinit var wordArray: List<wordTrad>
     var dejaClique: Boolean = false
     //private lateinit var databaseManager : WordsManager
+
+    // durées d'animation
+    val DUREE_APPARITION: Long = 500
+    val DUREE_DISPARITION: Long = 500
 
 
     override fun onCreateView(
@@ -72,7 +75,20 @@ class DatabaseFragment : Fragment() {
         val fragmentManager =
             requireActivity().supportFragmentManager // Obtenir le FragmentManager
         binding.floatingAddingButton.setOnClickListener {
+
+            binding.backgroundViewBlur.setOnClickListener {
+                animationAddingPageOut()
+                val fragmentTransaction = fragmentManager.beginTransaction()
+                fragmentTransaction.setCustomAnimations(
+                    R.anim.from_left,
+                    R.anim.to_right
+                )
+                fragmentTransaction.remove(fragment).commit()
+                binding.backgroundViewBlur.visibility = View.GONE
+                dejaClique = false
+            }
             if (!dejaClique) {
+                animationAddingPageComing()
                 val fragmentTransaction =
                     fragmentManager.beginTransaction() // Commencer une transaction de fragment
                         .setCustomAnimations(
@@ -87,6 +103,8 @@ class DatabaseFragment : Fragment() {
                 fragmentTransaction.commit() // Terminer la transaction
                 dejaClique = true
             } else {
+                animationAddingPageOut()
+                binding.backgroundViewBlur.visibility = View.GONE
                 val fragmentTransaction = fragmentManager.beginTransaction()
                 fragmentTransaction.setCustomAnimations(
                     R.anim.from_left,
@@ -120,4 +138,35 @@ class DatabaseFragment : Fragment() {
         return wordArray
     }
 
+    fun animationAddingPageComing() {
+        val fadeIn = AlphaAnimation(0f, 1f)
+        fadeIn.duration = DUREE_APPARITION
+        fadeIn.setAnimationListener(object : Animation.AnimationListener {
+            override fun onAnimationStart(animation: Animation?) {
+                binding.backgroundViewBlur.visibility = View.VISIBLE
+            }
+
+            override fun onAnimationEnd(animation: Animation?) {}
+            override fun onAnimationRepeat(animation: Animation?) {}
+
+        })
+
+        binding.backgroundViewBlur.startAnimation(fadeIn)
+    }
+
+    fun animationAddingPageOut() {
+        val fadeOut = AlphaAnimation(1f, 0f)
+        fadeOut.duration = DUREE_DISPARITION
+        fadeOut.setAnimationListener(object : Animation.AnimationListener {
+            override fun onAnimationStart(animation: Animation?) {
+                binding.backgroundViewBlur.visibility = View.GONE
+            }
+
+            override fun onAnimationEnd(animation: Animation?) {}
+            override fun onAnimationRepeat(animation: Animation?) {}
+
+        })
+
+        binding.backgroundViewBlur.startAnimation(fadeOut)
+    }
 }
