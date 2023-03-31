@@ -14,11 +14,13 @@ public class FragmentModifStatsBindingImpl extends FragmentModifStatsBinding  {
     static {
         sIncludes = null;
         sViewsWithIds = new android.util.SparseIntArray();
-        sViewsWithIds.put(R.id.tvFragmentName, 1);
-        sViewsWithIds.put(R.id.etstatenglish, 2);
-        sViewsWithIds.put(R.id.etstatfrench, 3);
-        sViewsWithIds.put(R.id.butmodify, 4);
-        sViewsWithIds.put(R.id.butdelete, 5);
+        sViewsWithIds.put(R.id.date_added, 1);
+        sViewsWithIds.put(R.id.date, 2);
+        sViewsWithIds.put(R.id.levelofknowledge, 3);
+        sViewsWithIds.put(R.id.etstatenglish, 4);
+        sViewsWithIds.put(R.id.etstatfrench, 5);
+        sViewsWithIds.put(R.id.butmodify, 6);
+        sViewsWithIds.put(R.id.butdelete, 7);
     }
     // views
     @NonNull
@@ -29,15 +31,17 @@ public class FragmentModifStatsBindingImpl extends FragmentModifStatsBinding  {
     // Inverse Binding Event Handlers
 
     public FragmentModifStatsBindingImpl(@Nullable androidx.databinding.DataBindingComponent bindingComponent, @NonNull View root) {
-        this(bindingComponent, root, mapBindings(bindingComponent, root, 6, sIncludes, sViewsWithIds));
+        this(bindingComponent, root, mapBindings(bindingComponent, root, 8, sIncludes, sViewsWithIds));
     }
     private FragmentModifStatsBindingImpl(androidx.databinding.DataBindingComponent bindingComponent, View root, Object[] bindings) {
         super(bindingComponent, root, 0
-            , (android.widget.Button) bindings[5]
-            , (android.widget.Button) bindings[4]
-            , (android.widget.EditText) bindings[2]
-            , (android.widget.EditText) bindings[3]
+            , (android.widget.Button) bindings[7]
+            , (android.widget.Button) bindings[6]
+            , (android.widget.TextView) bindings[2]
             , (android.widget.TextView) bindings[1]
+            , (android.widget.EditText) bindings[4]
+            , (android.widget.EditText) bindings[5]
+            , (android.widget.TextView) bindings[3]
             );
         this.mboundView0 = (android.widget.FrameLayout) bindings[0];
         this.mboundView0.setTag(null);

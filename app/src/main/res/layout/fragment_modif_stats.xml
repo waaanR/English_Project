@@ -15,11 +15,44 @@
             android:layout_height="match_parent">
 
             <TextView
-                android:id="@+id/tvFragmentName"
+                android:id="@+id/date_added"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="ModifStatsFragment"
+                android:layout_gravity="center"
+                android:fontFamily="@font/montserrat_bold"
+                android:text="Date added:"
+                android:textColor="@color/primaryColorDark"
+                android:textSize="17sp"
                 app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toTopOf="@+id/etstatenglish"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"/>
+
+            <TextView
+                android:id="@+id/date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:fontFamily="@font/montserrat_regular"
+                android:padding="10dp"
+                android:text="Date added"
+                android:textColor="@color/primaryColorDark"
+                android:textSize="16sp"
+                app:layout_constraintTop_toBottomOf="@+id/date_added"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"/>
+
+            <TextView
+                android:id="@+id/levelofknowledge"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:fontFamily="@font/montserrat_bold"
+                android:text="Level Of Knowledge"
+                android:textColor="@color/primaryColorDark"
+                android:textSize="19sp"
+                app:layout_constraintTop_toBottomOf="@+id/date"
+                app:layout_constraintBottom_toTopOf="@+id/etstatenglish"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"/>
 
@@ -29,6 +62,7 @@
                 android:layout_height="50dp"
                 android:hint="English word"
                 android:inputType="text"
+                android:fontFamily="@font/montserrat_regular"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -41,6 +75,7 @@
                 android:layout_margin="40dp"
                 android:hint="French word"
                 android:inputType="text"
+                android:fontFamily="@font/montserrat_regular"
                 app:layout_constraintTop_toBottomOf="@id/etstatenglish"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"/>
@@ -50,6 +85,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Modify"
+                android:fontFamily="@font/montserrat_bold"
                 app:layout_constraintTop_toBottomOf="@+id/etstatenglish"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -60,6 +96,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Delete"
+                android:fontFamily="@font/montserrat_bold"
                 app:layout_constraintTop_toBottomOf="@+id/butmodify"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

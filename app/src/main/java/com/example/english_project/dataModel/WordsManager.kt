@@ -33,9 +33,9 @@ object WordsManager {
                         wordTrad(
                             c.getString(WordsDB.NUM_COL_FRENCH),
                             c.getString(WordsDB.NUM_COL_ENGLISH),
-                            c.getInt(WordsDB.NUM_COL_ID),
                             c.getInt(WordsDB.NUM_COL_MULTIPLIER),
-                            c.getLong(WordsDB.NUM_COL_DATE)
+                            c.getLong(WordsDB.NUM_COL_DATE),
+                            c.getInt(WordsDB.NUM_COL_ID)
                         )
                     )
                 }
@@ -128,9 +128,9 @@ object WordsManager {
                 word = wordTrad(
                     c.getString(WordsDB.NUM_COL_FRENCH),
                     c.getString(WordsDB.NUM_COL_ENGLISH),
-                    c.getInt(WordsDB.NUM_COL_ID),
                     c.getInt(WordsDB.NUM_COL_MULTIPLIER),
-                    c.getLong(WordsDB.NUM_COL_DATE)
+                    c.getLong(WordsDB.NUM_COL_DATE),
+                    c.getInt(WordsDB.NUM_COL_ID)
                 )
             }
         }
@@ -165,6 +165,15 @@ object WordsManager {
         )
 
         close()
+
+    }
+
+    fun restartDB() {
+        openForWrite()
+        bdd!!.execSQL("drop table " + WordsDB.TABLE_WORDS)
+        Log.d("DATABASE", "supression")
+        bdd!!.execSQL(WordsDB.CREATE_BDD)
+        Log.d("DATABASE", "création new BDD")
 
     }
 

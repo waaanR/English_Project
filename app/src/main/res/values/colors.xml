@@ -11,6 +11,12 @@
     <color name="primaryColorDark">#315b75</color>
     <color name="yes">#6B9044</color>
     <color name="no">#C13D39</color>
+    <color name="reallybad">#BD1A15</color>
+    <color name="bad">#E64F1F</color>
+    <color name="medium">#FFC107</color>
+    <color name="good">#8BC34A</color>
+    <color name="reallygood">#2E9A32</color>
+
 
 
 </resources>
