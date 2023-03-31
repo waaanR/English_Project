@@ -1,16 +1,12 @@
 package com.example.english_project
 
-import android.graphics.Color
 import android.os.Bundle
 import android.os.Looper
 import android.util.Log
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import android.view.animation.AlphaAnimation
 import android.view.animation.Animation
 import androidx.core.content.ContextCompat
-import androidx.core.graphics.drawable.toDrawable
 import androidx.core.os.HandlerCompat
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
@@ -27,6 +23,7 @@ class FlashCardFragment : Fragment() {
 
     lateinit var binding: FragmentFlashCardBinding
     var dejaClique: Boolean = false
+    var isSwipeDisabled = false
     var vient_d_apparaitre: Int = -1 // rang du mot qui vient d'apparaitre pour ne pas l'avoir $
     // deux fois de suite
 
@@ -67,7 +64,7 @@ class FlashCardFragment : Fragment() {
         // Listener de la flashCard
         // handler pour ne pas pouvoir spammer :
         val handler = HandlerCompat.createAsync(Looper.getMainLooper())
-        binding.flashCardCardview.setOnClickListener {
+        val onClickListener = binding.flashCardCardview.setOnClickListener {
 
             Log.d("random", rang.toString() + " multiplier : " + multiplierMotActuel.toString())
             for (word in WordsManager.allwords) {
@@ -103,17 +100,123 @@ class FlashCardFragment : Fragment() {
             }
         }
 
+        // listener glissé de la flashcard
+        val gestureDetector =
+            GestureDetector(requireContext(), object : GestureDetector.SimpleOnGestureListener() {
+
+                override fun onFling(
+                    e1: MotionEvent, // e1.x : position initiale
+                    e2: MotionEvent, // e2.x : position actuelle
+                    velocityX: Float,
+                    velocityY: Float
+                ): Boolean {
+                    // Calculez le delta entre la position initiale du toucher et la position actuelle
+                    val deltaX = e2?.x?.minus(e1?.x ?: 0f) ?: 0f
+
+                    if (isSwipeDisabled) { // pour désactiver le glissement pendant X ms
+                        return false
+                    }
+                    // Déterminez la direction du geste de balayage
+                    if (dejaClique) {
+                        if (deltaX > 0) {
+                            // La vue est glissée vers la droite : YES
+                            disableSwipeAndClick()
+
+                            // modification du multiplier dans la base de données
+                            if (multiplierMotActuel - SOUSTRACTION > VAL_MAX_SOUSTRACTION) {
+                                WordsManager.multiplierActualize(rang, multiplierMotActuel - SOUSTRACTION)
+                            } else {
+                                WordsManager.multiplierActualize(rang, VAL_MAX_SOUSTRACTION)
+                            }
+
+                            // couleur flashcard
+                            var color = ContextCompat.getColor(requireContext(), R.color.yes)
+                            binding.flashCardCardview.setCardBackgroundColor(color)
+                            color = ContextCompat.getColor(requireContext(), R.color.white)
+                            handler.postDelayed({
+                                binding.flashCardCardview.setCardBackgroundColor(color)
+                            }, TimeUnit.MILLISECONDS.toMillis(DUREE_ANIMATION_FLASHCARD * 2))
+
+                            //animation flashcard
+                            flashcardAnimationDroite()
+                            handler.postDelayed({
+                                flashcardAnimationGauche()
+                            }, TimeUnit.MILLISECONDS.toMillis(250))
+
+                            // comme si on cliquait une deuxième fois sur la flashcard
+                            handler.postDelayed({
+                                deuxiemeClick()
+                            }, TimeUnit.MILLISECONDS.toMillis(DUREE_ANIMATION_FLASHCARD * 2))
+                            dejaClique = false
+
+                        } else {
+                            // La vue est glissée vers la gauche : NO
+                            disableSwipeAndClick()
+
+                            // modification du multiplier dans la base de données
+                            if (multiplierMotActuel + AJOUT < VAL_MAX_AJOUT) {
+                                WordsManager.multiplierActualize(rang, multiplierMotActuel + AJOUT)
+                            } else {
+                                WordsManager.multiplierActualize(rang, VAL_MAX_AJOUT)
+                            }
+
+                            // couleur flashcard
+                            var color = ContextCompat.getColor(requireContext(), R.color.no)
+                            binding.flashCardCardview.setCardBackgroundColor(color)
+                            color = ContextCompat.getColor(requireContext(), R.color.white)
+                            handler.postDelayed({
+                                binding.flashCardCardview.setCardBackgroundColor(color)
+                            }, TimeUnit.MILLISECONDS.toMillis(DUREE_ANIMATION_FLASHCARD * 2))
+
+                            //animation flashcard
+                            flashcardAnimationGauche()
+                            handler.postDelayed({
+                                flashcardAnimationDroite()
+                            }, TimeUnit.MILLISECONDS.toMillis(250))
+
+                            // comme si on cliquait une deuxième fois sur la flashcard
+                            handler.postDelayed({
+                                deuxiemeClick()
+                            }, TimeUnit.MILLISECONDS.toMillis(DUREE_ANIMATION_FLASHCARD * 2))
+
+                            dejaClique = false
+                        }
+
+                        return super.onFling(e1, e2, velocityX, velocityY)
+                    } else return false
+                }
+
+                private fun disableSwipeAndClick() {
+                    isSwipeDisabled = true
+                    binding.flashCardCardview.isClickable = false
+                    binding.noProbaButton.isClickable = false
+                    binding.yesProbaButton.isClickable = false
+                    handler.postDelayed({
+                        isSwipeDisabled = false
+                        binding.flashCardCardview.isClickable = true
+                        binding.noProbaButton.isClickable = true
+                        binding.yesProbaButton.isClickable = true
+                    }, DUREE_DISPARITION)
+                }
+
+
+            })
+
+        // onTouchListener
+        binding.flashCardCardview.setOnTouchListener { _, event ->
+            gestureDetector.onTouchEvent(
+                event
+            )
+        }
+
+
         // modifier l'attribut multiplier si facile ou difficile
         binding.noProbaButton.setOnClickListener {
             // permet de rendre incliquable le bouton pendant X ms
             binding.flashCardCardview.isClickable = false
-            handler.postDelayed({
-                binding.flashCardCardview.isClickable = true
-            }, TimeUnit.MILLISECONDS.toMillis(DUREE_DISPARITION))
-
-            // permet de rendre incliquable le bouton pendant X ms
             binding.noProbaButton.isClickable = false
             handler.postDelayed({
+                binding.flashCardCardview.isClickable = true
                 binding.noProbaButton.isClickable = true
             }, TimeUnit.MILLISECONDS.toMillis(DUREE_DISPARITION))
 
@@ -149,15 +252,12 @@ class FlashCardFragment : Fragment() {
         binding.yesProbaButton.setOnClickListener {
             // permet de rendre incliquable le bouton pendant X ms
             binding.flashCardCardview.isClickable = false
-            handler.postDelayed({
-                binding.flashCardCardview.isClickable = true
-            }, TimeUnit.MILLISECONDS.toMillis(DUREE_DISPARITION))
-
-            // permet de rendre incliquable le bouton pendant X ms
             binding.yesProbaButton.isClickable = false
             handler.postDelayed({
+                binding.flashCardCardview.isClickable = true
                 binding.yesProbaButton.isClickable = true
             }, TimeUnit.MILLISECONDS.toMillis(DUREE_DISPARITION))
+
 
             // modification du multiplier dans la base de données
             if (multiplierMotActuel - SOUSTRACTION > VAL_MAX_SOUSTRACTION) {
