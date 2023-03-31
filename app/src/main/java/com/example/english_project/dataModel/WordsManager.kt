@@ -22,7 +22,8 @@ object WordsManager {
                     WordsDB.COL_ID,
                     WordsDB.COL_FRENCH,
                     WordsDB.COL_ENGLISH,
-                    WordsDB.COL_MULTIPLIER
+                    WordsDB.COL_MULTIPLIER,
+                    WordsDB.COL_DATE
                 ), null, null, null, null, WordsDB.COL_ENGLISH
             )
 
@@ -33,7 +34,8 @@ object WordsManager {
                             c.getString(WordsDB.NUM_COL_FRENCH),
                             c.getString(WordsDB.NUM_COL_ENGLISH),
                             c.getInt(WordsDB.NUM_COL_ID),
-                            c.getInt(WordsDB.NUM_COL_MULTIPLIER)
+                            c.getInt(WordsDB.NUM_COL_MULTIPLIER),
+                            c.getLong(WordsDB.NUM_COL_DATE)
                         )
                     )
                 }
@@ -81,6 +83,7 @@ object WordsManager {
         cv.put(WordsDB.COL_FRENCH, words.french)
         cv.put(WordsDB.COL_ENGLISH, words.english)
         cv.put(WordsDB.COL_MULTIPLIER, words.multiplier)
+        cv.put(WordsDB.COL_DATE, words.addingDate)
 
         val retval = bdd!!.insert(WordsDB.TABLE_WORDS, null, cv)
 
@@ -114,7 +117,8 @@ object WordsManager {
                 WordsDB.COL_ID,
                 WordsDB.COL_FRENCH,
                 WordsDB.COL_ENGLISH,
-                WordsDB.COL_MULTIPLIER
+                WordsDB.COL_MULTIPLIER,
+                WordsDB.COL_DATE
             ),
             WordsDB.COL_ID + "=$id", null, null, null, WordsDB.COL_ID,
         )
@@ -125,7 +129,8 @@ object WordsManager {
                     c.getString(WordsDB.NUM_COL_FRENCH),
                     c.getString(WordsDB.NUM_COL_ENGLISH),
                     c.getInt(WordsDB.NUM_COL_ID),
-                    c.getInt(WordsDB.NUM_COL_MULTIPLIER)
+                    c.getInt(WordsDB.NUM_COL_MULTIPLIER),
+                    c.getLong(WordsDB.NUM_COL_DATE)
                 )
             }
         }
@@ -159,9 +164,8 @@ object WordsManager {
             null
         )
 
-        Log.d("ça a marché !!", "youpi   " + newMultiplier)
-
         close()
 
     }
+
 }

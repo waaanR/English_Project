@@ -3,8 +3,6 @@ package com.example.english_project
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Filter
-import android.widget.Filterable
 import androidx.recyclerview.widget.RecyclerView
 import com.example.english_project.dataModel.WordsManager
 import com.example.english_project.dataModel.wordTrad
@@ -57,8 +55,7 @@ class Adapter(
         } else if (newText!!.isBlank()) {
             actualizeArray()
             this.dataFilterList = datalist
-        }
-        else {
+        } else {
             for (word in datalist) {
                 if (word.french.lowercase(Locale.ROOT)
                         .contains(newText.lowercase(Locale.ROOT)) || word.english.lowercase(Locale.ROOT)
@@ -78,7 +75,58 @@ class Adapter(
         datalist = WordsManager.allwords
     }
 
+    fun filtreAlphabetiqueCroissant() {
+        val filteredWordList = dataFilterList
+        this.dataFilterList = filteredWordList.sortedBy {
+            it.english
+        }
+        notifyDataSetChanged()
+
+    }
+
+    fun filtreAlphabetiqueDecroissant() {
+        val filteredWordList = dataFilterList
+        this.dataFilterList = filteredWordList.sortedByDescending {
+            it.english
+        }
+        notifyDataSetChanged()
+    }
+
+    fun filtreChronologiqueCroissant() {
+        val filteredWordList = dataFilterList
+        this.dataFilterList = filteredWordList.sortedBy {
+            it.addingDate
+        }
+        notifyDataSetChanged()
+    }
+
+    fun filtreChronologiqueDecroissant() {
+        val filteredWordList = dataFilterList
+        this.dataFilterList = filteredWordList.sortedByDescending {
+            it.addingDate
+        }
+        notifyDataSetChanged()
+    }
+
+    fun filtreDifficulteCroissante() {
+        val filteredWordList = dataFilterList
+        this.dataFilterList = filteredWordList.sortedBy {
+            it.multiplier
+        }
+        notifyDataSetChanged()
+    }
+
+    fun filtreDifficulteDecroissante() {
+        val filteredWordList = dataFilterList
+        this.dataFilterList = filteredWordList.sortedByDescending {
+            it.multiplier
+        }
+        notifyDataSetChanged()
+    }
 }
+
+
+
 
 
 

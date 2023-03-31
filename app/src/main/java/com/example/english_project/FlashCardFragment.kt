@@ -71,7 +71,7 @@ class FlashCardFragment : Fragment() {
 
             Log.d("random", rang.toString() + " multiplier : " + multiplierMotActuel.toString())
             for (word in WordsManager.allwords) {
-                Log.d("Bonjiur", word.french + " " + word.multiplier)
+                Log.d("Bonjiur", word.french + " " + word.multiplier + "temps : " + word.addingDate)
             }
 
 
@@ -201,7 +201,7 @@ class FlashCardFragment : Fragment() {
 
         //récupération de l'index aléatoire
         var random: Int = myRand()
-        while (random == vient_d_apparaitre) { //pour ne pas avoir deux fois le meme random de suite
+        while (random == vient_d_apparaitre && WordsManager.allwords.size > 1) { //pour ne pas avoir deux fois le meme random de suite
             random = myRand()
         }
         vient_d_apparaitre = random

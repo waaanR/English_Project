@@ -16,7 +16,7 @@ public class FragmentDatabaseBindingImpl extends FragmentDatabaseBinding  {
         sViewsWithIds = new android.util.SparseIntArray();
         sViewsWithIds.put(R.id.recycler_view_database, 1);
         sViewsWithIds.put(R.id.editTextSearch, 2);
-        sViewsWithIds.put(R.id.butReset, 3);
+        sViewsWithIds.put(R.id.butFiltre, 3);
         sViewsWithIds.put(R.id.floatingAddingButton, 4);
         sViewsWithIds.put(R.id.background_view_blur, 5);
         sViewsWithIds.put(R.id.fragment_container_view, 6);

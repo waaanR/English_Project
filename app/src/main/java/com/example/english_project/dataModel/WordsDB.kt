@@ -42,11 +42,15 @@ class WordsDB(context: Context, name: String, factory: SQLiteDatabase.CursorFact
         val COL_MULTIPLIER = "multiplier"
         val NUM_COL_MULTIPLIER = 3
 
-        private val CREATE_BDD = "create table " + TABLE_WORDS +
+        val COL_DATE = "addingDate"
+        val NUM_COL_DATE = 4
+
+        public val CREATE_BDD = "create table " + TABLE_WORDS +
                 "(" + COL_ID + " integer primary key autoincrement, " +
                 COL_FRENCH + " text not null, " +
                 COL_ENGLISH + " text not null, " +
-                COL_MULTIPLIER + " integer not null)"
+                COL_MULTIPLIER + " integer not null, " +
+                COL_DATE + " integer not null)"
     }
 
 }

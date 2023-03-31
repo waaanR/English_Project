@@ -1,6 +1,7 @@
 package com.example.english_project
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -25,6 +26,10 @@ class DatabaseFragment : Fragment() {
     lateinit var wordArray: List<wordTrad>
     var dejaClique: Boolean = false
     //private lateinit var databaseManager : WordsManager
+    var modeFilter: Int = 0 // 0 : filtrage par ordre alphabétique croissant sur anglais
+    // 1 : filtrage par ordre alphabétique décroissant sur anglais
+    // 2 : filtrage par ordre chronologique croissant d'ajout (du - récent au +)
+    // 3 : filtrage par ordre chronologique décroissant d'ajout (du + récent au -)
 
     // durées d'animation
     val DUREE_APPARITION: Long = 500
@@ -63,11 +68,38 @@ class DatabaseFragment : Fragment() {
             }
         })
 
-        // bouton de Reset
-        binding.butReset.setOnClickListener {
-            //databaseManager.reset()
-            WordsManager.reset()
-            wordAdapter.filterList(null)
+        // bouton de filtre
+        binding.butFiltre.text = "Recent +" //valeur par défaut
+        filtreChronologiqueDecroissant()
+        // listener
+        binding.butFiltre.setOnClickListener {
+            Log.d("modeFilter", modeFilter.toString())
+            if (modeFilter == 0) { // ordre alphabétique croissant
+                filtreAlphabetiqueCroissant()
+                binding.butFiltre.text = "A-Z"
+                modeFilter ++
+            } else if (modeFilter == 1) { // ordre alphabétique décroissant
+                filtreAlphabetiqueDecroissant()
+                binding.butFiltre.text = "Z-A"
+                modeFilter ++
+            }else if (modeFilter == 2) { // ordre croissant d'ajout
+                filtreChronologiqueCroissant()
+                binding.butFiltre.text = "Old +"
+                modeFilter ++
+            } else if (modeFilter == 3) { // ordre décroissant d'ajout
+                filtreChronologiqueDecroissant()
+                binding.butFiltre.text = "Recent +"
+                modeFilter ++
+            } else if (modeFilter == 4) { // ordre difficulté croissante
+                filtreDifficulteCroissante()
+                binding.butFiltre.text = "Easy"
+                modeFilter ++
+            } else if (modeFilter == 5) { // ordre difficulté décroissante
+                filtreDifficulteDecroissante()
+                binding.butFiltre.text = "Hard"
+                modeFilter = 0
+            }
+
         }
 
         // bouton d'ajout d'un mot
@@ -123,6 +155,30 @@ class DatabaseFragment : Fragment() {
         }*/
 
         return binding.root
+    }
+
+    private fun filtreAlphabetiqueCroissant() {
+        wordAdapter.filtreAlphabetiqueCroissant()
+    }
+
+    private fun filtreAlphabetiqueDecroissant() {
+        wordAdapter.filtreAlphabetiqueDecroissant()
+    }
+
+    private fun filtreChronologiqueCroissant() {
+        wordAdapter.filtreChronologiqueCroissant()
+    }
+
+    private fun filtreChronologiqueDecroissant() {
+        wordAdapter.filtreChronologiqueDecroissant()
+    }
+
+    private fun filtreDifficulteCroissante() {
+        wordAdapter.filtreDifficulteCroissante()
+    }
+
+    private fun filtreDifficulteDecroissante() {
+        wordAdapter.filtreDifficulteDecroissante()
     }
 
     // fonction de filtre de la searchview
