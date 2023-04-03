@@ -70,7 +70,7 @@
             android:id="@+id/buttonIntoSetting"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="20dp"
+            android:layout_margin="15dp"
             android:backgroundTint="@color/primaryColor"
             android:src="@drawable/settings"
             app:layout_constraintRight_toRightOf="parent"

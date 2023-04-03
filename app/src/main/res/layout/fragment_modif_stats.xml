@@ -102,6 +102,17 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"/>
 
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/floattingBackButton"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_margin="15dp"
+                android:backgroundTint="@color/primaryColor"
+                android:src="@drawable/baseline_arrow_forward_24"
+                app:elevation="15dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </FrameLayout>

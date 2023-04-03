@@ -54,6 +54,11 @@ class ModifStatsFragment : Fragment() {
             binding.levelofknowledge.text = "It's in your dictionary now!"
         }
 
+        // bouton de retour
+        binding.floattingBackButton.setOnClickListener {
+            val action = ModifStatsFragmentDirections.actionModifStatsFragmentToDatabaseFragment()
+            findNavController().navigate(action)
+        }
 
         binding.butdelete.setOnClickListener {
             MaterialAlertDialogBuilder(requireContext())

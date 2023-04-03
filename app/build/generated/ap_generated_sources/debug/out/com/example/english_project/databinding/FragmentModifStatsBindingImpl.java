@@ -21,6 +21,7 @@ public class FragmentModifStatsBindingImpl extends FragmentModifStatsBinding  {
         sViewsWithIds.put(R.id.etstatfrench, 5);
         sViewsWithIds.put(R.id.butmodify, 6);
         sViewsWithIds.put(R.id.butdelete, 7);
+        sViewsWithIds.put(R.id.floattingBackButton, 8);
     }
     // views
     @NonNull
@@ -31,7 +32,7 @@ public class FragmentModifStatsBindingImpl extends FragmentModifStatsBinding  {
     // Inverse Binding Event Handlers
 
     public FragmentModifStatsBindingImpl(@Nullable androidx.databinding.DataBindingComponent bindingComponent, @NonNull View root) {
-        this(bindingComponent, root, mapBindings(bindingComponent, root, 8, sIncludes, sViewsWithIds));
+        this(bindingComponent, root, mapBindings(bindingComponent, root, 9, sIncludes, sViewsWithIds));
     }
     private FragmentModifStatsBindingImpl(androidx.databinding.DataBindingComponent bindingComponent, View root, Object[] bindings) {
         super(bindingComponent, root, 0
@@ -41,6 +42,7 @@ public class FragmentModifStatsBindingImpl extends FragmentModifStatsBinding  {
             , (android.widget.TextView) bindings[1]
             , (android.widget.EditText) bindings[4]
             , (android.widget.EditText) bindings[5]
+            , (com.google.android.material.floatingactionbutton.FloatingActionButton) bindings[8]
             , (android.widget.TextView) bindings[3]
             );
         this.mboundView0 = (android.widget.FrameLayout) bindings[0];

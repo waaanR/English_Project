@@ -19,6 +19,8 @@ public class FragmentSettingsBindingImpl extends FragmentSettingsBinding  {
         sViewsWithIds.put(R.id.french_selection, 3);
         sViewsWithIds.put(R.id.english_selection, 4);
         sViewsWithIds.put(R.id.materialButtonReset, 5);
+        sViewsWithIds.put(R.id.buttonAboutUs, 6);
+        sViewsWithIds.put(R.id.floattingBackButton, 7);
     }
     // views
     @NonNull
@@ -29,11 +31,13 @@ public class FragmentSettingsBindingImpl extends FragmentSettingsBinding  {
     // Inverse Binding Event Handlers
 
     public FragmentSettingsBindingImpl(@Nullable androidx.databinding.DataBindingComponent bindingComponent, @NonNull View root) {
-        this(bindingComponent, root, mapBindings(bindingComponent, root, 6, sIncludes, sViewsWithIds));
+        this(bindingComponent, root, mapBindings(bindingComponent, root, 8, sIncludes, sViewsWithIds));
     }
     private FragmentSettingsBindingImpl(androidx.databinding.DataBindingComponent bindingComponent, View root, Object[] bindings) {
         super(bindingComponent, root, 0
+            , (com.google.android.material.floatingactionbutton.FloatingActionButton) bindings[6]
             , (com.google.android.material.button.MaterialButton) bindings[4]
+            , (com.google.android.material.floatingactionbutton.FloatingActionButton) bindings[7]
             , (com.google.android.material.button.MaterialButton) bindings[3]
             , (com.google.android.material.button.MaterialButton) bindings[5]
             , (com.google.android.material.textview.MaterialTextView) bindings[1]

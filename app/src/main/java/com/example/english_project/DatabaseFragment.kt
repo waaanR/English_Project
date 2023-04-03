@@ -55,6 +55,12 @@ class DatabaseFragment : Fragment() {
         }
         myRecycler.adapter = wordAdapter
 
+        // bouton de retour
+        binding.floattingBackButton.setOnClickListener {
+            val action = DatabaseFragmentDirections.actionDatabaseFragmentToMenuFragment()
+            findNavController().navigate(action)
+        }
+
         // SearchView
         binding.editTextSearch.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {

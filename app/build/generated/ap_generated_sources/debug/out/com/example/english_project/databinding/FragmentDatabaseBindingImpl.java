@@ -16,10 +16,11 @@ public class FragmentDatabaseBindingImpl extends FragmentDatabaseBinding  {
         sViewsWithIds = new android.util.SparseIntArray();
         sViewsWithIds.put(R.id.recycler_view_database, 1);
         sViewsWithIds.put(R.id.editTextSearch, 2);
-        sViewsWithIds.put(R.id.butFiltre, 3);
-        sViewsWithIds.put(R.id.floatingAddingButton, 4);
-        sViewsWithIds.put(R.id.background_view_blur, 5);
-        sViewsWithIds.put(R.id.fragment_container_view, 6);
+        sViewsWithIds.put(R.id.floattingBackButton, 3);
+        sViewsWithIds.put(R.id.butFiltre, 4);
+        sViewsWithIds.put(R.id.floatingAddingButton, 5);
+        sViewsWithIds.put(R.id.background_view_blur, 6);
+        sViewsWithIds.put(R.id.fragment_container_view, 7);
     }
     // views
     @NonNull
@@ -30,15 +31,16 @@ public class FragmentDatabaseBindingImpl extends FragmentDatabaseBinding  {
     // Inverse Binding Event Handlers
 
     public FragmentDatabaseBindingImpl(@Nullable androidx.databinding.DataBindingComponent bindingComponent, @NonNull View root) {
-        this(bindingComponent, root, mapBindings(bindingComponent, root, 7, sIncludes, sViewsWithIds));
+        this(bindingComponent, root, mapBindings(bindingComponent, root, 8, sIncludes, sViewsWithIds));
     }
     private FragmentDatabaseBindingImpl(androidx.databinding.DataBindingComponent bindingComponent, View root, Object[] bindings) {
         super(bindingComponent, root, 0
-            , (android.view.View) bindings[5]
-            , (android.widget.Button) bindings[3]
+            , (android.view.View) bindings[6]
+            , (android.widget.Button) bindings[4]
             , (android.widget.SearchView) bindings[2]
-            , (com.google.android.material.floatingactionbutton.FloatingActionButton) bindings[4]
-            , (androidx.fragment.app.FragmentContainerView) bindings[6]
+            , (com.google.android.material.floatingactionbutton.FloatingActionButton) bindings[5]
+            , (com.google.android.material.floatingactionbutton.FloatingActionButton) bindings[3]
+            , (androidx.fragment.app.FragmentContainerView) bindings[7]
             , (androidx.recyclerview.widget.RecyclerView) bindings[1]
             );
         this.mboundView0 = (androidx.constraintlayout.widget.ConstraintLayout) bindings[0];
