@@ -36,7 +36,7 @@ public class FragmentDatabaseBindingImpl extends FragmentDatabaseBinding  {
     private FragmentDatabaseBindingImpl(androidx.databinding.DataBindingComponent bindingComponent, View root, Object[] bindings) {
         super(bindingComponent, root, 0
             , (android.view.View) bindings[6]
-            , (android.widget.Button) bindings[4]
+            , (com.google.android.material.button.MaterialButton) bindings[4]
             , (android.widget.SearchView) bindings[2]
             , (com.google.android.material.floatingactionbutton.FloatingActionButton) bindings[5]
             , (com.google.android.material.floatingactionbutton.FloatingActionButton) bindings[3]

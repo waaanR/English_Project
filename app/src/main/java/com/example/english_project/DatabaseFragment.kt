@@ -216,6 +216,7 @@ class DatabaseFragment : Fragment() {
         binding.backgroundViewBlur.startAnimation(fadeIn)
     }
 
+
     fun animationAddingPageOut() {
         val fadeOut = AlphaAnimation(1f, 0f)
         fadeOut.duration = DUREE_DISPARITION
@@ -231,4 +232,5 @@ class DatabaseFragment : Fragment() {
 
         binding.backgroundViewBlur.startAnimation(fadeOut)
     }
+
 }
