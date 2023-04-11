@@ -32,6 +32,12 @@ class MenuFragment : Fragment() {
             findNavController().navigate(action)
         }
 
+        if(Global.mode.equals("French")){
+            binding.tvModeFlashcards.text = "French to English"
+        } else if (Global.mode.equals("English")){
+            binding.tvModeFlashcards.text = "English to French"
+        }
+
 
         binding.buttonIntoDatabase.setOnClickListener {
             val action=MenuFragmentDirections.actionMenuFragmentToDatabaseFragment()

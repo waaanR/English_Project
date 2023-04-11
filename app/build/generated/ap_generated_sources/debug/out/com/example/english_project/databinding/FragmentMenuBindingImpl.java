@@ -15,8 +15,10 @@ public class FragmentMenuBindingImpl extends FragmentMenuBinding  {
         sIncludes = null;
         sViewsWithIds = new android.util.SparseIntArray();
         sViewsWithIds.put(R.id.buttonIntoFlashCards, 1);
-        sViewsWithIds.put(R.id.buttonIntoDatabase, 2);
-        sViewsWithIds.put(R.id.buttonIntoSetting, 3);
+        sViewsWithIds.put(R.id.tvFlashcards, 2);
+        sViewsWithIds.put(R.id.tvModeFlashcards, 3);
+        sViewsWithIds.put(R.id.buttonIntoDatabase, 4);
+        sViewsWithIds.put(R.id.buttonIntoSetting, 5);
     }
     // views
     @NonNull
@@ -27,13 +29,15 @@ public class FragmentMenuBindingImpl extends FragmentMenuBinding  {
     // Inverse Binding Event Handlers
 
     public FragmentMenuBindingImpl(@Nullable androidx.databinding.DataBindingComponent bindingComponent, @NonNull View root) {
-        this(bindingComponent, root, mapBindings(bindingComponent, root, 4, sIncludes, sViewsWithIds));
+        this(bindingComponent, root, mapBindings(bindingComponent, root, 6, sIncludes, sViewsWithIds));
     }
     private FragmentMenuBindingImpl(androidx.databinding.DataBindingComponent bindingComponent, View root, Object[] bindings) {
         super(bindingComponent, root, 0
-            , (com.google.android.material.card.MaterialCardView) bindings[2]
+            , (com.google.android.material.card.MaterialCardView) bindings[4]
             , (com.google.android.material.card.MaterialCardView) bindings[1]
-            , (com.google.android.material.floatingactionbutton.FloatingActionButton) bindings[3]
+            , (com.google.android.material.floatingactionbutton.FloatingActionButton) bindings[5]
+            , (android.widget.TextView) bindings[2]
+            , (android.widget.TextView) bindings[3]
             );
         this.mboundView0 = (androidx.constraintlayout.widget.ConstraintLayout) bindings[0];
         this.mboundView0.setTag(null);

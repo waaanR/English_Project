@@ -25,6 +25,7 @@
                 android:background="@drawable/cardview_drawable" />
 
             <TextView
+                android:id="@+id/tvFlashcards"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -33,6 +34,18 @@
                 android:text="Flashcards"
                 android:textColor="@color/primaryColorDark"
                 android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/tvModeFlashcards"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="60dp"
+                android:fontFamily="@font/montserrat_regular"
+                android:padding="10dp"
+                android:text="Mode"
+                android:textColor="@color/primaryColorDark"
+                android:textSize="18sp"/>
 
         </com.google.android.material.card.MaterialCardView>
 
