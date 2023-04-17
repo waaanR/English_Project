@@ -36,7 +36,7 @@ class ModifStatsFragment : Fragment() {
 
         binding.etstatfrench.hint = wordManager!!.french
         binding.etstatenglish.hint = wordManager!!.english
-        val df = DateFormat.getDateInstance(DateFormat.LONG, Locale.FRANCE)
+        val df = DateFormat.getDateInstance(DateFormat.LONG, Locale.ENGLISH)
         val date = Date(wordManager.addingDate)
         val dateString = df.format(date!!)
         binding.date.text = dateString
@@ -103,8 +103,8 @@ class ModifStatsFragment : Fragment() {
             binding.etstatenglish.text.clear()
         }
 
-
         return binding.root
+
     }
 
 }
